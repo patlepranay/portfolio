@@ -23,7 +23,7 @@ const Tech = () => {
     misc: ["MSSQL", "MongoDB", "HTML5", "CSS", "ShadCN", "Tailwind CSS"],
   };
   return (
-    <div className="flex flex-col flex-wrap justify-center items-center ">
+    <div className="flex flex-col flex-wrap justify-center items-center " id='tech'>
       <h2 className={`${styles.sectionHeadText} mb-11`}>Technologies</h2>
       {/* grid that divides in 2 row */}
       <div className="grid grid-rows-2  gap-10 ">
