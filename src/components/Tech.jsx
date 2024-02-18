@@ -31,7 +31,7 @@ const Tech = () => {
         <div className="grid md:grid-cols-2 gap-10	">
           <div>
             <p className={styles.sectionSubText}>Programming Languages</p>
-            <p className="mt-4 text-secondary text-[12px] ">
+            <p className="mt-4 text-secondary sm:text-[18px] text-[14px] text-neutral-400">
               Languages I have mastered till now
             </p>
             <div className="grid grid-cols-3 gap-2 justify-start mt-4">
@@ -47,7 +47,7 @@ const Tech = () => {
           </div>
           <div>
             <p className={styles.sectionSubText}>Frameworks</p>
-            <p className="mt-4 text-secondary text-[12px] ">
+            <p className="mt-4 text-secondary sm:text-[18px] text-[14px] text-neutral-400">
               Frameworks I love working with
             </p>
             <div className="grid grid-cols-3 gap-2 justify-start mt-4">
@@ -67,7 +67,7 @@ const Tech = () => {
           <div className="grid md:grid-cols-2 gap-10	">
             <div>
               <p className={styles.sectionSubText}>Technologies</p>
-              <p className="mt-4 text-secondary text-[12px] ">
+              <p className="mt-4 text-secondary sm:text-[18px] text-[14px] text-neutral-400">
                 Technologies I got chance to interact with
               </p>
               <div className="grid grid-cols-3 gap-2 justify-start mt-4">
@@ -83,7 +83,7 @@ const Tech = () => {
             </div>
             <div>
               <p className={styles.sectionSubText}>Miscellaneous</p>
-              <p className="mt-4 text-secondary text-[12px] ">
+              <p className="mt-4 text-secondary sm:text-[18px] text-[14px] text-neutral-400">
                 Random Stuff I worked with
               </p>
               <div className="grid grid-cols-3 gap-2 justify-start mt-4">
