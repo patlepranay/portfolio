@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=League+Spartan:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: "Poppins", sans-serif; */
+  scroll-behavior: smooth;
+  color-scheme: dark;
+
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
