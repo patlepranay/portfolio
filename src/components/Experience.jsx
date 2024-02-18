@@ -30,15 +30,15 @@ const Experience = () => {
               background:'#080808',
               color: "#fff",
             }}
-            contentArrowStyle={{ borderRight: "7px solid  #232631" }}
+            contentArrowStyle={{ borderRight: "7px solid  #080808" }}
             date={`Jul'21-Present`}
-            // iconStyle={{ background: experience.iconBg }}
+            iconStyle={{ background:'black' }}
             icon={
-              <div className="flex justify-center items-center w-full h-full">
+              <div className="flex justify-center items-center w-full h-full ">
                 <img
                   alt={'tcs'}
-                  src='../../public/tcs.svg'
-                  className=" object-contain bg-white"
+                  src='../../src/assets/tcs_logo.png'
+                  className=" object-contain w-[70%] h-[70%]"
                 />
               </div>
             }
@@ -65,6 +65,7 @@ const Experience = () => {
               </li>
             </ul>
           </VerticalTimelineElement>
+          
         </VerticalTimeline>
       </div>
     </>
