@@ -29,7 +29,7 @@ const Hero = () => {
               <ResizableHandle />
               <ResizablePanel defaultSize={60}>
                 <ResizablePanelGroup direction={"vertical"}>
-                  <ResizablePanel defaultSize={60}>
+                  <ResizablePanel defaultSize={30}>
                     <div className="flex  h-full items-center justify-center p-6">
                     <HashLink to="/#experience">
                       <span className={`${styles.sectionSubText}font-semibold`}>
@@ -39,13 +39,14 @@ const Hero = () => {
                     </div>
                   </ResizablePanel>
                   <ResizableHandle />
-                  <ResizablePanel defaultSize={40}>
+                  <ResizablePanel defaultSize={70}>
                     <div className="flex flex-col h-full items-center justify-center px-6 py-10">
                       <Link to="/">
-                        <span className="font-semibold text-4xl hover:scale-50	">
-                          {`Hi, I'm Pranay`}
+                        <span className="font-semibold text-4xl hover:scale-50	mb-4">
+                          {`Hi,`}
+                          <br /> {`I'm Pranay`}
                         </span>
-                        <p>I develop softwares and web applications</p>
+                        <p>I develop Softwares & Web Applications</p>
                       </Link>
                     </div>
                   </ResizablePanel>
@@ -57,7 +58,7 @@ const Hero = () => {
           <ResizablePanel defaultSize={35}>
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel defaultSize={33}>
-                <div className="flex h-full items-center justify-center p-6">
+                <div className="flex h-full items-center justify-center p-6 border-b">
                   <HashLink to="#projects">
                     <span className={`${styles.sectionSubText}font-semibold`}>
                       Projects I learned from
@@ -67,7 +68,7 @@ const Hero = () => {
               </ResizablePanel>
               <ResizableHandle />
               <ResizablePanel defaultSize={34}>
-                <div className="flex h-full items-center justify-center p-6">
+                <div className="flex h-full items-center justify-center p-6 border-b">
                   <HashLink to="#about">
                     <span className={`${styles.sectionSubText}font-semibold`}>About me</span>
                   </HashLink>
@@ -75,7 +76,7 @@ const Hero = () => {
               </ResizablePanel>
               <ResizableHandle />
               <ResizablePanel defaultSize={33}>
-                <div className="flex h-full items-center justify-center p-6">
+                <div className="flex h-full items-center justify-center p-6 border-b">
                   <HashLink to="#contact">
                     <span className={`${styles.sectionSubText}font-semibold`}>Reach out to me on</span>
                   </HashLink>
