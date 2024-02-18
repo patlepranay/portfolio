@@ -73,7 +73,7 @@ const Tech = () => {
               <div className="grid grid-cols-3 gap-2 justify-start mt-4">
                 {tech.tecnologies.map((technology, index) => (
                   <div
-                    className="p-4 border border-neutral-700 hover:border-white hover:cursor-pointer"
+                    className="p-4 border border-neutral-700 hover:border-white hover:cursor-pointer text-clip"
                     key={index}
                   >
                     <span>{technology}</span>

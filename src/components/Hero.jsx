@@ -29,7 +29,7 @@ const Hero = () => {
               <ResizableHandle />
               <ResizablePanel defaultSize={60}>
                 <ResizablePanelGroup direction={"vertical"}>
-                  <ResizablePanel defaultSize={70}>
+                  <ResizablePanel defaultSize={60}>
                     <div className="flex  h-full items-center justify-center p-6">
                     <HashLink to="/#experience">
                       <span className={`${styles.sectionSubText}font-semibold`}>
@@ -39,7 +39,7 @@ const Hero = () => {
                     </div>
                   </ResizablePanel>
                   <ResizableHandle />
-                  <ResizablePanel defaultSize={30}>
+                  <ResizablePanel defaultSize={40}>
                     <div className="flex flex-col h-full items-center justify-center px-6 py-10">
                       <Link to="/">
                         <span className="font-semibold text-4xl hover:scale-50	">
