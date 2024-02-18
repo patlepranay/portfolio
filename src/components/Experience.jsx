@@ -27,7 +27,7 @@ const Experience = () => {
         <VerticalTimeline>
           <VerticalTimelineElement
             contentStyle={{
-              background: "#1d1836",
+              background:'#080808',
               color: "#fff",
             }}
             contentArrowStyle={{ borderRight: "7px solid  #232631" }}
@@ -36,9 +36,9 @@ const Experience = () => {
             icon={
               <div className="flex justify-center items-center w-full h-full">
                 <img
-                  // alt={experience.company_name}
-                  // src={experience.icon}
-                  className="w-[60%] h-[60%] object-contain"
+                  alt={'tcs'}
+                  src={'../../public/tcs.png'}
+                  className=" object-contain bg-white"
                 />
               </div>
             }

@@ -4,13 +4,12 @@ import {
   About,
   Contact,
   Experience,
-
   Hero,
-  Navbar,
   Tech,
   Works,
   StarsCanvas,
 } from "./components";
+import React from "react";
 
 const App = () => {
   return (
