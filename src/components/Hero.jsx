@@ -56,7 +56,7 @@ const Hero = () => {
           <ResizableHandle />
           <ResizablePanel defaultSize={35}>
             <ResizablePanelGroup direction="horizontal">
-              <ResizablePanel defaultSize={34}>
+              <ResizablePanel defaultSize={33}>
                 <div className="flex h-full items-center justify-center p-6">
                   <HashLink to="#projects">
                     <span className={`${styles.sectionSubText}font-semibold`}>
