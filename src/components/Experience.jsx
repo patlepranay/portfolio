@@ -37,7 +37,7 @@ const Experience = () => {
               <div className="flex justify-center items-center w-full h-full">
                 <img
                   alt={'tcs'}
-                  src={'../../public/tcs.png'}
+                  src={'../assets/tcs.png'}
                   className=" object-contain bg-white"
                 />
               </div>
