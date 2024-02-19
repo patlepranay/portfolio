@@ -5,7 +5,14 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 
 import { SectionWrapper } from "../hoc";
-import { Dashboard, Editor, KrushiSarathi, NoImage, Telehealth, Ticket } from "@/assets";
+import {
+  Dashboard,
+  Editor,
+  KrushiSarathi,
+  NoImage,
+  Telehealth,
+  Ticket,
+} from "@/assets";
 
 const ProjectCard = ({
   index,
@@ -23,8 +30,6 @@ const ProjectCard = ({
           alt="project_image"
           className="w-full h-full object-contain rounded-2xl"
         />
-
-        
       </div>
 
       <h3 className="text-white font-bold text-[24px] mt-5">{name}</h3>
@@ -33,7 +38,7 @@ const ProjectCard = ({
         <div>
           <p className="mt-2 text-secondary text-[14px]">{description}</p>
         </div>
-        <div className="flex">
+        <div className="flex gap-2">
           {tags.map((tag, index) => (
             <p key={`${index}`} className={`text-[14px]`}>
               #{tag}
@@ -51,8 +56,8 @@ const Works = () => {
       name: "Telehealth Consultation",
       description:
         "Web-based platform for hospitals that has video calling feature for appointment and caters the need of central repository for appointments and medical history of patient",
-      tags: ["react", "mongodb", "tailwind"],
-      image:Telehealth,
+      tags: ["react", "express", "materialUI", "socket.io"],
+      image: Telehealth,
 
       source_code_link: "https://github.com/",
     },
@@ -60,8 +65,8 @@ const Works = () => {
       name: "Whatsapp Web Bulk Sender",
       description:
         "Python GUI based web automation application. Allows user to send thousands of customizable message to users in one go. Best suited for replacement of broadcast messages in Whatsapp",
-      tags: ["react", "restapi", "scss"],
-      image:NoImage,
+      tags: ["python", "tkinter", "selenium"],
+      image: NoImage,
 
       source_code_link: "https://github.com/",
     },
@@ -69,16 +74,17 @@ const Works = () => {
       name: "Realtime Note Editor",
       description:
         "Created a user-friendly online editor in NextJS that facilitates document publishing and secure note creation. Integrated a real-time database with Convex, incorporated social media login through Clerk, and utilized Shadcn and Tailwind for seamless UI components, while leveraging BlockNote for the editing functionality.",
-      tags: ["nextjs", "supabase", "css"],
-      image:Editor,
+      tags: ["nextjs", "clerk", "tailwind", "blocknote"],
+      image: Editor,
 
       source_code_link: "https://github.com/",
-    },{
+    },
+    {
       name: "Ticket Booking Application",
       description:
         "Created a mobile responsive application for event booking and registration. Application provides platform to host events and book tickets for users.",
-      tags: ["nextjs", "supabase", "css"],
-      image:Ticket,
+      tags: ["nextjs", "clerk", 'prisma',"shadcn"],
+      image: Ticket,
 
       source_code_link: "https://github.com/",
     },
@@ -86,8 +92,8 @@ const Works = () => {
       name: "Krushi Sarathi NGO Website",
       description:
         "Designed and developed beautful website for Krushi Sarathi team. Krushi Sarathi works for the welfare of the farmers in Vidarbha Region of Maharashtra",
-      tags: ["nextjs", "supabase", "css"],
-      image:KrushiSarathi,
+      tags: ["react", "tailwind"],
+      image: KrushiSarathi,
 
       source_code_link: "https://github.com/",
     },
@@ -95,8 +101,8 @@ const Works = () => {
       name: "Realtime React Dashboard",
       description:
         "Designed and developed realtime data dashboard displaying data in charts, graph. Has support to update data in realtime using socket io.",
-      tags: ["nextjs", "supabase", "css"],
-      image:Dashboard,
+      tags: ["react", "express", "socket.io", "tremor", "shadcn"],
+      image: Dashboard,
 
       source_code_link: "https://github.com/",
     },

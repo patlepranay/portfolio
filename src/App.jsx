@@ -15,7 +15,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="relative z-0 bg-stone-950">
-      <StarsCanvas />
         <div className="flex-col">
           {/* <Navbar /> */}
           <Hero />
@@ -26,6 +25,7 @@ const App = () => {
         <Works />
         {/* <Feedbacks /> */}
         <Contact />
+      <StarsCanvas />
       </div>
     </BrowserRouter>
   );
