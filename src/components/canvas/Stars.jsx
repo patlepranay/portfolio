@@ -10,7 +10,7 @@ const Stars = (props) => {
 
   useFrame((state, delta) => {
     ref.current.rotation.x -= delta / 100;
-    ref.current.rotation.y -= delta / 150;
+    ref.current.rotation.y -= delta / 20;
   });
 
   return (
@@ -18,7 +18,7 @@ const Stars = (props) => {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color='#f272c8'
+          color='#fff'
           size={.00056}
           sizeAttenuation={true}
           depthWrite={true}
