@@ -33,48 +33,49 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
+    try {
+      emailjs
+        .send(
+          import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+          {
+            from_name: form.name,
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
+            from_email: form.email,
 
-          from_email: form.email,
+            message: form.message,
+          },
+          import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        )
+        .then(
+          () => {
+            setLoading(false);
+            toast({
+              title: "Thanks for reaching out.",
+              description: "I'll get back to you asap.",
+            });
 
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          toast({
-            title: "Thanks for reaching out.",
-            description: "I'll get back to you asap.",
-          });
+            setForm({
+              name: "",
+              email: "",
+              message: "",
+            });
+          },
+          (error) => {
+            setLoading(false);
+            console.error(error);
 
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          toast({
-            title: "It worked on my machine",
-            description: "Will try to fix this issue.",
-          });
-        }
-      );
-
+            toast({
+              title: "It worked on my machine",
+              description: "Will try to fix this issue.",
+            });
+          }
+        );
+    } catch {
       setTimeout(() => {
-        setLoading(false)
+        setLoading(false);
       }, 5000);
+    }
   };
 
   return (
@@ -86,20 +87,32 @@ const Contact = () => {
         <h3 className={styles.sectionHeadText}>Contact.</h3>
 
         <div className="  flex  flex-col md:flex-row  gap-4 mt-8">
-          <Button  variant='link' className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer">
+          <Button
+            variant="link"
+            className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
+          >
             <Link to="https://www.linkedin.com/in/pranayhpatle/">LinkedIn</Link>
           </Button>
-          <Button variant='link'  className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer">
+          <Button
+            variant="link"
+            className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
+          >
             <Link to="https://www.instagram.com/campooter_ng_near/">
               Instagram
             </Link>
           </Button>
-          <Button variant='link' className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer">
+          <Button
+            variant="link"
+            className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
+          >
             <Link to="mailto:pranayhpatle@gmail.com">
               pranayhpatle@gmail.com
             </Link>
           </Button>
-          <Button  variant='link' className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer">
+          <Button
+            variant="link"
+            className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
+          >
             <span>+918180875642</span>
           </Button>
         </div>
