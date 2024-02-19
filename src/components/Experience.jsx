@@ -4,7 +4,6 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 
-
 import "react-vertical-timeline-component/style.min.css";
 
 import { styles } from "../styles";
@@ -15,7 +14,7 @@ import { TCS } from "@/assets";
 const Experience = () => {
   return (
     <>
-      <div id='experience'>
+      <div id="experience">
         <p className={`${styles.sectionSubText} text-center`}>
           My Professional Journey
         </p>
@@ -28,16 +27,16 @@ const Experience = () => {
         <VerticalTimeline>
           <VerticalTimelineElement
             contentStyle={{
-              background:'transparent',
+              background: "transparent",
               color: "#fff",
             }}
             contentArrowStyle={{ borderRight: "7px solid  #fff" }}
             date={<span>{`Jul'21-Present`}</span>}
-            iconStyle={{ background:'black' }}
+            iconStyle={{ background: "black" }}
             icon={
               <div className="flex justify-center items-center w-full h-full ">
                 <img
-                  alt={'tcs'}
+                  alt={"tcs"}
                   src={TCS}
                   className=" object-contain w-[70%] h-[70%]"
                 />
@@ -56,20 +55,22 @@ const Experience = () => {
 
             <ul className="mt-5 list-disc ml-5 space-y-2">
               <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Played different role of Full Stack Developer & Support Lead in two different client projects. `}
+                {`Assumed diverse roles as a Full Stack Developer & Support Lead in two distinct client projects.`}
               </li>
               <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {` Lead Backend Engineer for client project handling all of the backend and mentoring colleagues.`}
+                {`Led the backend engineering efforts for a client project, overseeing all backend tasks and providing mentorship to junior colleagues.`}
               </li>
               <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {` Demonstrated expertise in implementing APIs, incorporating AWS cloud services, refining authentication middleware, and streamlining database performance.`}
+                {`Demonstrated proficiency in API implementation, integration of AWS cloud services, optimization of authentication middleware, and enhancement of database performance.`}
               </li>
               <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Successfully managed an 8-member team, supervising stand-up calls, client interactions, code reviews, and the formulation of project development strategies`}
+                {`Effectively managed an 8-member team, overseeing stand-up calls, client interactions, code reviews, and the development of project strategies.Additionally, played a key role in overseeing service deployment in Openshift with Jenkins CI/CD`}
+              </li>
+              <li className="text-white-100 text-[14px] pl-1 tracking-wider">
+                {`Moreover,  played a crucial part in advancing a hybrid web/mobile application, implementing offline capabilities, refining synchronization processes, and achieving significant improvements in network efficiency and overall performance.`}
               </li>
             </ul>
           </VerticalTimelineElement>
-          
         </VerticalTimeline>
       </div>
     </>
