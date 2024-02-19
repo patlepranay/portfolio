@@ -74,6 +74,10 @@ const Contact = () => {
     } catch {
       setTimeout(() => {
         setLoading(false);
+        toast({
+          title: "It worked on my machine",
+          description: "Will try to fix this issue.",
+        });
       }, 5000);
     }
   };

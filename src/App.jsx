@@ -10,12 +10,12 @@ import {
   StarsCanvas,
 } from "./components";
 import React from "react";
-import { Toaster } from "./components/ui/toaster";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <div className="relative z-0 bg-black">
+      <div className="relative z-0 bg-stone-950">
+      <StarsCanvas />
         <div className="flex-col">
           {/* <Navbar /> */}
           <Hero />
@@ -26,9 +26,7 @@ const App = () => {
         <Works />
         {/* <Feedbacks /> */}
         <Contact />
-        <StarsCanvas />
       </div>
-     
     </BrowserRouter>
   );
 };
