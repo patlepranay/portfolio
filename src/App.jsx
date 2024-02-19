@@ -10,6 +10,7 @@ import {
   StarsCanvas,
 } from "./components";
 import React from "react";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -25,7 +26,9 @@ const App = () => {
         <Works />
         {/* <Feedbacks /> */}
         <Contact />
-      <StarsCanvas />
+        {/* <More /> */}
+        <Footer />
+        <StarsCanvas />
       </div>
     </BrowserRouter>
   );
