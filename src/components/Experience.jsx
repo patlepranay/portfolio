@@ -10,6 +10,7 @@ import "react-vertical-timeline-component/style.min.css";
 import { styles } from "../styles";
 
 import { SectionWrapper } from "../hoc";
+import { TCS } from "@/assets";
 
 const Experience = () => {
   return (
@@ -31,13 +32,13 @@ const Experience = () => {
               color: "#fff",
             }}
             contentArrowStyle={{ borderRight: "7px solid  #080808" }}
-            date={`Jul'21-Present`}
+            date={<span>{`Jul'21-Present`}</span>}
             iconStyle={{ background:'black' }}
             icon={
               <div className="flex justify-center items-center w-full h-full ">
                 <img
                   alt={'tcs'}
-                  src='../../src/assets/tcs_logo.png'
+                  src={TCS}
                   className=" object-contain w-[70%] h-[70%]"
                 />
               </div>

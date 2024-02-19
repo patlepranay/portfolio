@@ -35,7 +35,7 @@ const Tech = () => {
              <div className="grid md:grid-cols-3 grid-cols-2 gap-2 justify-start mt-4">
               {tech.languages.map((technology, index) => (
                 <div
-                  className="p-6 border border-neutral-700 hover:border-white hover:cursor-pointer"
+                  className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
                   key={index}
                 >
                   <span>{technology}</span>
@@ -51,7 +51,7 @@ const Tech = () => {
              <div className="grid md:grid-cols-3 grid-cols-2 gap-2 justify-start mt-4">
               {tech.framework.map((technology, index) => (
                 <div
-                  className="p-6 border border-neutral-700 hover:border-white hover:cursor-pointer"
+                  className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
                   key={index}
                 >
                   <span>{technology}</span>
@@ -71,7 +71,7 @@ const Tech = () => {
             <div className="grid md:grid-cols-3 grid-cols-2 gap-2 justify-start mt-4">
               {tech.tecnologies.map((technology, index) => (
                 <div
-                  className="p-6 border border-neutral-700 hover:border-white hover:cursor-pointer "
+                  className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer "
                   key={index}
                 >
                   <p className="">{technology}</p>
@@ -87,7 +87,7 @@ const Tech = () => {
              <div className="grid md:grid-cols-3 grid-cols-2 gap-2 justify-start mt-4">
               {tech.misc.map((technology, index) => (
                 <div
-                  className="p-6 border border-neutral-700 hover:border-white hover:cursor-pointer"
+                  className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
                   key={index}
                 >
                   <span>{technology}</span>
