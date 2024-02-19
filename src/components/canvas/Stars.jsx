@@ -9,12 +9,12 @@ const Stars = (props) => {
   const [sphere] = useState(() => random.inSphere(new Float32Array(100000), { radius: 2 }));
 
   useFrame((state, delta) => {
-    ref.current.rotation.x -= delta / 80;
-    ref.current.rotation.y -= delta / 80;
+    ref.current.rotation.x -= delta / 100;
+    ref.current.rotation.y -= delta / 20;
   });
 
   return (
-    <group rotation={[ Math.random()*10,Math.random()*10,Math.random()*10]}>
+    <group rotation={[0, 0, Math.PI / 4]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
@@ -31,7 +31,7 @@ const Stars = (props) => {
 const StarsCanvas = () => {
   return (
     <div className='w-full h-auto absolute inset-0 z-[-1]'>
-      <Canvas camera={{ position: [1,1,1] }}>
+      <Canvas camera={{ position: [0, 0, 1] }}>
         <Suspense fallback={null}>
           <Stars />
         </Suspense>
