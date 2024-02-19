@@ -28,10 +28,10 @@ const Experience = () => {
         <VerticalTimeline>
           <VerticalTimelineElement
             contentStyle={{
-              background:'#080808',
+              background:'transparent',
               color: "#fff",
             }}
-            contentArrowStyle={{ borderRight: "7px solid  #080808" }}
+            contentArrowStyle={{ borderRight: "7px solid  #fff" }}
             date={<span>{`Jul'21-Present`}</span>}
             iconStyle={{ background:'black' }}
             icon={

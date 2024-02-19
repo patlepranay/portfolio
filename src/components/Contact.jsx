@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
-import { Dashboard } from "@/assets";
+
 import { useToast } from "./ui/use-toast";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
@@ -79,7 +79,7 @@ const Contact = () => {
   };
 
   return (
-    <div
+    <motion.div
       className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
     >
       <div className="flex-[.75] bg-black-100 ">
@@ -164,7 +164,7 @@ const Contact = () => {
           </button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
