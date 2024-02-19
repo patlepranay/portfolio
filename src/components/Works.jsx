@@ -55,7 +55,7 @@ const Works = () => {
     {
       name: "Telehealth Consultation",
       description:
-        "Web-based platform for hospitals that has video calling feature for appointment and caters the need of central repository for appointments and medical history of patient",
+        "A web-based platform tailored for hospitals integrates a video calling feature for appointments and addresses the requirement for a centralized repository managing both appointment schedules and patient medical histories. The inclusion of a single-page application enhances the overall user experience, providing a seamless and efficient interface. ",
       tags: ["react", "express", "materialUI", "socket.io"],
       image: Telehealth,
 
@@ -64,7 +64,7 @@ const Works = () => {
     {
       name: "Whatsapp Web Bulk Sender",
       description:
-        "Python GUI based web automation application. Allows user to send thousands of customizable message to users in one go. Best suited for replacement of broadcast messages in Whatsapp",
+        "Application for web automation based on Python with a GUI, enabling users to send customized messages to thousands in a single operation. Ideal for replacing broadcast messages in Whatsapp, application offers a user-friendly interface for efficient communication.",
       tags: ["python", "tkinter", "selenium"],
       image: NoImage,
 
@@ -73,7 +73,7 @@ const Works = () => {
     {
       name: "Realtime Note Editor",
       description:
-        "Created a user-friendly online editor in NextJS that facilitates document publishing and secure note creation. Integrated a real-time database with Convex, incorporated social media login through Clerk, and utilized Shadcn and Tailwind for seamless UI components, while leveraging BlockNote for the editing functionality.",
+        "Developed an intuitive online editor using NextJS, facilitating document publishing and secure note creation. Implemented a real-time database with Convex, integrated social media login through Clerk, and employed Shadcn and Tailwind for seamless UI components. Additionally, the editing functionality was optimized using BlockNote, resulting in a user-friendly platform with advanced features for a streamlined document creation experience..",
       tags: ["nextjs", "clerk", "tailwind", "blocknote"],
       image: Editor,
 
@@ -82,7 +82,7 @@ const Works = () => {
     {
       name: "Ticket Booking Application",
       description:
-        "Created a mobile responsive application for event booking and registration. Application provides platform to host events and book tickets for users.",
+        "An event booking and registration application that serves as a comprehensive platform for hosting events and facilitating ticket reservations. The application offers users a seamless experience to both organize and participate in events. To enhance user convenience, a secure payment gateway has been integrated, leveraging Stripe for efficient and reliable financial transactions..",
       tags: ["nextjs", "clerk", 'prisma',"shadcn"],
       image: Ticket,
 
@@ -91,7 +91,7 @@ const Works = () => {
     {
       name: "Krushi Sarathi NGO Website",
       description:
-        "Designed and developed beautful website for Krushi Sarathi team. Krushi Sarathi works for the welfare of the farmers in Vidarbha Region of Maharashtra",
+        "Crafted and developed an aesthetically pleasing website for the Krushi Sarathi team, an organization dedicated to the well-being of farmers in the Vidarbha Region of Maharashtra.",
       tags: ["react", "tailwind"],
       image: KrushiSarathi,
 
@@ -100,7 +100,7 @@ const Works = () => {
     {
       name: "Realtime React Dashboard",
       description:
-        "Designed and developed realtime data dashboard displaying data in charts, graph. Has support to update data in realtime using socket io.",
+        " Dynamic real-time data dashboard, showcasing information through visually appealing charts and graphs. This interactive platform not only provides a comprehensive view of data but also incorporates the capability to update information in real-time, thanks to the integration of Socket.IO. The user-friendly interface ensures a seamless experience for monitoring and analyzing data trends, making it a valuable tool for decision-makers and analysts alike.",
       tags: ["react", "express", "socket.io", "tremor", "shadcn"],
       image: Dashboard,
 
@@ -116,11 +116,7 @@ const Works = () => {
 
       <div className="w-full flex">
         <motion.p className="mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]">
-          Following projects showcases my skills and experience through
-          real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos in it. It reflects my
-          ability to solve complex problems, work with different technologies,
-          and manage projects effectively.
+        Ever since my college days, I've immersed myself in development, relishing hands-on experiences across various domains. The projects below represent not only my completed works but also valuable learning experiences. These endeavors have not only showcased my skills but also served as stepping stones in my continuous journey of growth and proficiency. I am enthusiastic about sharing these projects as they reflect my passion for hands-on learning and the evolving nature of my expertise.
         </motion.p>
       </div>
 
