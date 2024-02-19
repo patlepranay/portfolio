@@ -66,7 +66,7 @@ const Contact = () => {
             console.error(error);
 
             toast({
-              title: "It worked on my machine",
+              title: "Aaah! It worked on my machine",
               description: "Will try to fix this issue.",
             });
           }
@@ -75,7 +75,7 @@ const Contact = () => {
       setTimeout(() => {
         setLoading(false);
         toast({
-          title: "It worked on my machine",
+          title: "Aaah! It worked on my machine",
           description: "Will try to fix this issue.",
         });
       }, 5000);
