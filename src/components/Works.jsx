@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { styles } from "../styles";
 
 import { SectionWrapper } from "../hoc";
-import { Dashboard, Editor, KrushiSarathi, Telehealth, Ticket } from "@/assets";
+import { Dashboard, Editor, KrushiSarathi, NoImage, Telehealth, Ticket } from "@/assets";
 
 const ProjectCard = ({
   index,
@@ -61,7 +61,7 @@ const Works = () => {
       description:
         "Python GUI based web automation application. Allows user to send thousands of customizable message to users in one go. Best suited for replacement of broadcast messages in Whatsapp",
       tags: ["react", "restapi", "scss"],
-      image:Telehealth,
+      image:NoImage,
 
       source_code_link: "https://github.com/",
     },

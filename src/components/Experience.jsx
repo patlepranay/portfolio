@@ -56,13 +56,16 @@ const Experience = () => {
 
             <ul className="mt-5 list-disc ml-5 space-y-2">
               <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Point 1`}
+                {`Played different role of Full Stack Developer & Support Lead in two different client projects. `}
               </li>
               <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Point 2`}
+                {` Lead Backend Engineer for client project handling all of the backend and mentoring colleagues.`}
               </li>
               <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Point 3`}
+                {` Demonstrated expertise in implementing APIs, incorporating AWS cloud services, refining authentication middleware, and streamlining database performance.`}
+              </li>
+              <li className="text-white-100 text-[14px] pl-1 tracking-wider">
+                {`Successfully managed an 8-member team, supervising stand-up calls, client interactions, code reviews, and the formulation of project development strategies`}
               </li>
             </ul>
           </VerticalTimelineElement>

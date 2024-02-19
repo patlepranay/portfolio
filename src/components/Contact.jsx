@@ -1,8 +1,12 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-// import emailjs from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
+import { Dashboard } from "@/assets";
+import { useToast } from "./ui/use-toast";
+import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
 
 const Contact = () => {
   const formRef = useRef();
@@ -13,6 +17,8 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
+
+  const { toast } = useToast();
 
   const handleChange = (e) => {
     const { target } = e;
@@ -28,51 +34,71 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    // emailjs
-    //   .send(
-    //     import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-    //     import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-    //     {
-    //       from_name: form.name,
-    //       to_name: "JavaScript Mastery",
-    //       from_email: form.email,
-    //       to_email: "sujata@jsmastery.pro",
-    //       message: form.message,
-    //     },
-    //     import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-    //   )
-    //   .then(
-    //     () => {
-    //       setLoading(false);
-    //       alert("Thank you. I will get back to you as soon as possible.");
+    emailjs
+      .send(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
 
-    //       setForm({
-    //         name: "",
-    //         email: "",
-    //         message: "",
-    //       });
-    //     },
-    //     (error) => {
-    //       setLoading(false);
-    //       console.error(error);
+          from_email: form.email,
 
-    //       alert("Ahh, something went wrong. Please try again.");
-    //     }
-    //   );
+          message: form.message,
+        },
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setLoading(false);
+          toast({
+            title: "Thanks for reaching out.",
+            description: "I'll get back to you asap.",
+          });
 
+          setForm({
+            name: "",
+            email: "",
+            message: "",
+          });
+        },
+        (error) => {
+          setLoading(false);
+          console.error(error);
 
-    setTimeout(() => {
-      setLoading(false)
-    }, 3000);
+          toast({
+            title: "It worked on my machine",
+            description: "Will try to fix this issue.",
+          });
+        }
+      );
   };
 
   return (
     <div
       className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
     >
-      <motion.div className="flex-[0.75] bg-black-100  rounded-2xl">
+      <div className="flex-[.75] bg-black-100 ">
         <p className={styles.sectionSubText}>Get in touch</p>
         <h3 className={styles.sectionHeadText}>Contact.</h3>
+
+        <div className="  flex  flex-col md:flex-row  gap-4 mt-8">
+          <Button  variant='link' className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer">
+            <Link to="https://www.linkedin.com/in/pranayhpatle/">LinkedIn</Link>
+          </Button>
+          <Button variant='link'  className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer">
+            <Link to="https://www.instagram.com/campooter_ng_near/">
+              Instagram
+            </Link>
+          </Button>
+          <Button variant='link' className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer">
+            <Link to="mailto:pranayhpatle@gmail.com">
+              pranayhpatle@gmail.com
+            </Link>
+          </Button>
+          <Button  variant='link' className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer">
+            <span>+918180875642</span>
+          </Button>
+        </div>
 
         <form
           ref={formRef}
@@ -86,8 +112,8 @@ const Contact = () => {
               name="name"
               value={form.name}
               onChange={handleChange}
-              placeholder="What's your good name?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              placeholder="Micheal Scott"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -97,8 +123,8 @@ const Contact = () => {
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="What's your web address?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              placeholder="michealscott@dundermifflin.com"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -108,19 +134,19 @@ const Contact = () => {
               name="message"
               value={form.message}
               onChange={handleChange}
-              placeholder="What you want to say?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
+              placeholder="World's Best Boss"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border-none font-medium"
             />
           </label>
 
           <button
             type="submit"
-            className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary"
+            className="bg-tertiary py-3 px-8  outline-none w-fit text-white font-bold shadow-md shadow-primary border"
           >
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
-      </motion.div>
+      </div>
     </div>
   );
 };

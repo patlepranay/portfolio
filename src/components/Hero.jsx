@@ -46,7 +46,7 @@ const Hero = () => {
                           {`Hi,`}
                           <br /> {`I'm Pranay`}
                         </span>
-                        <p>I develop Softwares & Web Applications</p>
+                        <p>I develop Softwares & Web Applications.</p>
                       </Link>
                     </div>
                   </ResizablePanel>
@@ -78,7 +78,7 @@ const Hero = () => {
               <ResizablePanel defaultSize={33}>
                 <div className="flex h-full items-center justify-center p-6 border-b">
                   <HashLink to="#contact">
-                    <span className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}>Reach out to me on</span>
+                    <span className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}>Reach out to me </span>
                   </HashLink>
                 </div>
               </ResizablePanel>

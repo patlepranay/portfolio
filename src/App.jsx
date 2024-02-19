@@ -10,6 +10,7 @@ import {
   StarsCanvas,
 } from "./components";
 import React from "react";
+import { Toaster } from "./components/ui/toaster";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Contact />
         <StarsCanvas />
       </div>
+      <Toaster/>
     </BrowserRouter>
   );
 };
