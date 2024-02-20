@@ -15,3 +15,11 @@
   font-weight: 400;
   font-style: normal;
 }
+
+html {
+  --cursor-color: #fff
+}
+
+html.dark-mode {
+  --cursor-color: #fff
+}
