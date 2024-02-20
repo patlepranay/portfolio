@@ -86,11 +86,11 @@ const Contact = () => {
     <motion.div
       className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
     >
-      <div className="flex-[.75] bg-black-100 ">
+      <div className="flex-[.75] bg-black-100 gap-10 space-y-10">
         
-        <h3 className={styles.heroSubText}>Find me on</h3>
+        <h3 className={`text-white font-black md:text-[30px] sm:text-[50px] xs:text-[40px] text-[30px]`}>Find me on</h3>
 
-        <div className="  flex  flex-col md:flex-row  gap-4 mt-8 mb-8">
+        <div className="  flex  flex-col md:flex-row  gap-4 ">
           <Button
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
