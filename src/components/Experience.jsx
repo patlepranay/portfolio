@@ -12,6 +12,13 @@ import { SectionWrapper } from "../hoc";
 import { TCS } from "@/assets";
 
 const Experience = () => {
+  const bullet = [
+    " Exercised a comprehensive skill set in my capacity as a Full Stack Developer, coupled with leadership responsibilities as the Support Lead, enhancing project efficiency.",
+    "Leading the backend engineering for a client project, tasks include designing database models and APIs to extrapolate essential information from raw data.",
+    "Effectively managed an 8-member team and oversaw stand-up calls, client interactions, code reviews, and project strategies.",
+    " Proficiently implemented APIs along with the integration of AWS cloud services and authentication middleware. Enhanced system performance, leading to a 50% decrease in execution time. Additionally, played an active role in service deployment in Openshift with Jenkins CI/CD.",
+    "Developed a hybrid web/mobile application to implement offline capabilities, refined synchronization processes, and resolved complex scalability issues, resulting in the improvement of network efficiency and overall performance.",
+  ];
   return (
     <>
       <div id="experience">
@@ -54,21 +61,13 @@ const Experience = () => {
             </div>
 
             <ul className="mt-5 list-disc ml-5 space-y-2">
-              <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Assumed diverse roles as a Full Stack Developer & Support Lead in two distinct client projects.`}
-              </li>
-              <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Led the backend engineering efforts for a client project, overseeing all backend tasks and providing mentorship to junior colleagues.`}
-              </li>
-              <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Demonstrated proficiency in API implementation, integration of AWS cloud services, optimization of authentication middleware, and enhancement of database performance.`}
-              </li>
-              <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Effectively managed an 8-member team, overseeing stand-up calls, client interactions, code reviews, and the development of project strategies.Additionally, played a key role in overseeing service deployment in Openshift with Jenkins CI/CD`}
-              </li>
-              <li className="text-white-100 text-[14px] pl-1 tracking-wider">
-                {`Moreover,  played a crucial part in advancing a hybrid web/mobile application, implementing offline capabilities, refining synchronization processes, and achieving significant improvements in network efficiency and overall performance.`}
-              </li>
+              {bullet.map((point,index) => (
+                <li className="text-white-100 text-[14px] pl-1 tracking-wider" key={index}>
+                  {point}
+                </li>
+              ))}
+
+            
             </ul>
           </VerticalTimelineElement>
         </VerticalTimeline>

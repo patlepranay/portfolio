@@ -87,8 +87,8 @@ const Contact = () => {
       className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
     >
       <div className="flex-[.75] bg-black-100 ">
-        <p className={styles.sectionSubText}>Get in touch</p>
-        <h3 className={styles.sectionHeadText}>Contact.</h3>
+        <p className={styles.sectionHeadText}>Get in touch</p>
+        {/* <h3 className={styles.}>Contact.</h3> */}
 
         <div className="  flex  flex-col md:flex-row  gap-4 mt-8">
           <Button
