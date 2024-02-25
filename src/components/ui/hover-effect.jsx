@@ -35,16 +35,27 @@ export const HoverEffect = ({ items, className, type = "array" }) => {
             )}
           </AnimatePresence>
           {type === "object" ? (
-            <Card className='p-2'>
+            <Card className="p-5 flex flex-col justify-between items-end">
               <div className="w-full h-[230px] ">
                 <img
                   src={item.image}
                   alt="project_image"
-                  className="w-full h-full object-contain rounded-2xl"
+                  className="w-full h-full object-contain"
                 />
               </div>
-              <CardTitle className='text-white font-bold text-[24px] mt-5'>{item.title}</CardTitle>
-              <CardDescription>{item?.description}</CardDescription>
+              <CardTitle className="text-white font-bold text-[24px] mt-5">
+                {item.title}
+              </CardTitle>
+              <CardDescription className={"mt-4"}>
+                {item?.description}
+              </CardDescription>
+              <div className="flex gap-2 mt-4">
+                {item.tags.map((tag, index) => (
+                  <p key={`${index}`} className={`text-[14px]`}>
+                    #{tag}
+                  </p>
+                ))}
+              </div>
             </Card>
           ) : (
             <Card>
