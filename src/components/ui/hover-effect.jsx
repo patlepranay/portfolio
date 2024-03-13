@@ -35,7 +35,7 @@ export const HoverEffect = ({ items, className, type = "array" }) => {
             )}
           </AnimatePresence>
           {type === "object" ? (
-            <Card className="p-5 flex flex-col justify-between items-end">
+            <Card className="p-5 flex flex-col justify-between  ">
               <div className="w-full h-[230px] ">
                 <img
                   src={item.image}
@@ -49,11 +49,11 @@ export const HoverEffect = ({ items, className, type = "array" }) => {
               <CardDescription className={"mt-4"}>
                 {item?.description}
               </CardDescription>
-              <div className="flex gap-2 mt-4">
+              <div className="flex gap-2 mt-4 flex-wrap">
                 {item.tags.map((tag, index) => (
-                  <p key={`${index}`} className={`text-[14px]`}>
+                  <span key={`${index}`} className={`text-[14px]`}>
                     #{tag}
-                  </p>
+                  </span>
                 ))}
               </div>
             </Card>

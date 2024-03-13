@@ -1,97 +1,71 @@
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
 import { styles } from "@/styles";
 import React from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
-
 const Hero = () => {
   return (
-    <section className={` w-full h-screen mx-auto`}>
-      <div className="  w-full flex justify-center items-center ">
-        <ResizablePanelGroup
-          direction="vertical"
-          className=" rounded-lg  min-h-screen p-2"
-        >
-          <ResizablePanel defaultSize={65}>
-            <ResizablePanelGroup direction={"horizontal"}>
-              <ResizablePanel defaultSize={40} className="" >
-                <div className="flex h-full items-center justify-center p-6">
-                  <HashLink to="/#tech">
-                    <span className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200 `}>Tech Stack I work on</span>
-                  </HashLink>
-                </div>
-              </ResizablePanel>
-              <ResizableHandle />
-              <ResizablePanel defaultSize={60}>
-                <ResizablePanelGroup direction={"vertical"}>
-                  <ResizablePanel defaultSize={30}>
-                    <div className="flex  h-full items-center justify-center p-6">
-                    <HashLink to="/#experience">
-                      <span className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}>
-                        My Professional Experience
-                      </span>
-                      </HashLink>
-                    </div>
-                  </ResizablePanel>
-                  <ResizableHandle />
-                  <ResizablePanel defaultSize={70}>
-                    <div className="flex flex-col h-full items-center justify-center px-6 py-10">
-                      <Link to="/">
-                        <span className="font-semibold text-4xl hover:scale-50	mb-4">
-                          {`Hi,`}
-                          <br /> {`I'm Pranay`}
-                        </span>
-                        <p>I develop Softwares & Web Applications.</p>
-                      </Link>
-                    </div>
-                  </ResizablePanel>
-                </ResizablePanelGroup>
-              </ResizablePanel>
-            </ResizablePanelGroup>
-          </ResizablePanel>
-          <ResizableHandle />
-          <ResizablePanel defaultSize={35}>
-            <ResizablePanelGroup direction="horizontal">
-              <ResizablePanel defaultSize={33}>
-              <div className="flex h-full items-center justify-center p-6 border-b">
-                  <HashLink to="#about">
-                    <span className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}>About me</span>
-                  </HashLink>
-                </div>
-                <div className="flex h-full items-center justify-center p-6 border-b">
-                  <HashLink to="#projects">
-                    <span className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}>
-                      Projects I learned from
-                    </span>
-                  </HashLink>
-                </div>
-              </ResizablePanel>
-              <ResizableHandle />
-              <ResizablePanel defaultSize={34}>
-              <div className="flex h-full items-center justify-center p-6 border-b">
-                  <HashLink to="#projects">
-                    <span className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}>
-                      Projects I learned from
-                    </span>
-                  </HashLink>
-                </div>
-              </ResizablePanel>
-              <ResizableHandle />
-              <ResizablePanel defaultSize={33}>
-                <div className="flex h-full items-center justify-center p-6 border-b">
-                  <HashLink to="#contact">
-                    <span className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}>Reach out to me </span>
-                  </HashLink>
-                </div>
-              </ResizablePanel>
-            </ResizablePanelGroup>
-          </ResizablePanel>
-        </ResizablePanelGroup>
+    <section className={` flex flex-col  w-full h-screen mx-auto z-5 `}>
+      <div className="grid grid-cols-10  h-[65%] w-full ">
+        <div className=" flex h-full col-span-3 border  items-center justify-center p-6">
+          <HashLink to="/#tech">
+            <span
+              className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200 `}
+            >
+              Tech Stack I work on
+            </span>
+          </HashLink>
+        </div>
+        <div className="h-full col-span-7 grid grid-rows-10">
+          <div className="h-full row-span-3 border-t border-r  items-center justify-center p-6 flex">
+            {" "}
+            <HashLink to="/#experience">
+              <span
+                className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
+              >
+                My Professional Experience
+              </span>
+            </HashLink>
+          </div>
+          <div className="h-full row-span-7 border-t border-r border-b items-center justify-center p-6 flex">
+            <Link to="/">
+              <span className="font-semibold text-4xl hover:scale-50	mb-4">
+                {`Hi,`}
+                <br /> {`I'm Pranay`}
+              </span>
+              <p>I develop Softwares & Web Applications.</p>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-9    h-[34%] w-full ">
+        <div className="h-full col-span-3 border-l border-b items-center justify-center p-6 flex ">
+          <HashLink to="#about">
+            <span
+              className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
+            >
+              About me
+            </span>
+          </HashLink>
+        </div>
+        <div className="h-full col-span-3 border-l border-b items-center justify-center p-6 flex">
+          <HashLink to="#projects">
+            <span
+              className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
+            >
+              Projects I learned from
+            </span>
+          </HashLink>
+        </div>
+        <div className="h-full col-span-3 border-l border-b border-r items-center justify-center p-6 flex">
+          <HashLink to="#contact">
+            <span
+              className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
+            >
+              Reach out to me{" "}
+            </span>
+          </HashLink>
+        </div>
       </div>
     </section>
   );
