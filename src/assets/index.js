@@ -7,4 +7,4 @@ import Ticket from './ticket.png'
 import NoImage from './no-image.svg'
 import logo from './logo.png'
 
-export { Telehealth, Dashboard, TCS,KrushiSarathi ,Editor,Ticket,NoImage,logo};
+export { Telehealth, Dashboard, TCS,KrushiSarathi ,Editor,Ticket,NoImage,logo,};
