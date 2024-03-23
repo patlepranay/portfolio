@@ -12,6 +12,7 @@ import {
   NoImage,
   Telehealth,
   Ticket,
+  url,
 } from "@/assets";
 import { HoverEffect } from "./ui/hover-effect";
 
@@ -104,6 +105,15 @@ const Works = () => {
         " Dynamic real-time data dashboard, showcasing information through visually appealing charts and graphs. This interactive platform not only provides a comprehensive view of data but also incorporates the capability to update information in real-time, thanks to the integration of Socket.IO. The user-friendly interface ensures a seamless experience for monitoring and analyzing data trends, making it a valuable tool for decision-makers and analysts alike.",
       tags: ["react", "express", "socket.io", "tremor", "shadcn"],
       image: Dashboard,
+
+      source_code_link: "https://github.com/",
+    },
+    {
+      title: "Url Shortner App",
+      description:
+        " Comprehensive URL Shortener Application capable of generating short URLs from long ones. The application offers the flexibility to customize short URLs. Additionally, it includes functionality for users to monitor the performance of their shortened links, providing valuable insights for thorough analysis",
+      tags: ["react", "express", "zustand", "mongodb", "shadcn"],
+      image: url,
 
       source_code_link: "https://github.com/",
     },
