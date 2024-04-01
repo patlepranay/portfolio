@@ -6,7 +6,7 @@ import { HoverEffect } from "./ui/hover-effect";
 
 const Tech = () => {
   const tech = {
-    languages: ["Javascript", "C#", "Python"],
+    languages: ["Javascript", "C#", "Python","Java"],
     framework: [
       "React",
       "NextJS",
