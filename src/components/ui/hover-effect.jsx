@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 
+import { github } from "@/assets";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
+import {  Link } from "lucide-react";
 
 import React, { useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 export const HoverEffect = ({ items, className, type = "array" }) => {
   let [hoveredIndex, setHoveredIndex] = useState(null);
@@ -46,6 +49,54 @@ export const HoverEffect = ({ items, className, type = "array" }) => {
               <CardTitle className="text-white font-bold text-[24px] mt-5">
                 {item.title}
               </CardTitle>
+              <CardDescription className="flex gap-2 my-2">
+                {item.source_code_link?.length > 1 ? (
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <img
+                        src={github}
+                        className="w-[18px] h-[18px] cursor-pointer"
+                      />
+                    </PopoverTrigger>
+                    <PopoverContent className=" bg-black" align="start">
+                      <div className="flex gap-4 text-white underline text-sm">
+                        <a
+                          href={item.source_code_link[0]}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Front-End
+                        </a>
+                        <a
+                          href={item.source_code_link[1]}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Back-End
+                        </a>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                ) : (
+                  
+                  <a
+                    href={item.source_code_link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      src={github}
+                      className="w-[18px] h-[18px] cursor-pointer"
+                    />
+                  </a>
+                )}
+
+                {item.deploy_link && (
+                  <a href={item.deploy_link} target="_blank" rel="noreferrer">
+                    <Link className="w-[18px] h-[18px]" />
+                  </a>
+                )}
+              </CardDescription>
               <CardDescription className={"mt-4"}>
                 {item?.description}
               </CardDescription>
