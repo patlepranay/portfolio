@@ -109,8 +109,8 @@ const Contact = () => {
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-            <Link to="mailto:patle.h.pranay@gmail.com">
-            patle.h.pranay@gmail.com
+            <Link to="mailto:pranayhpatle@gmail.com">
+            pranayhpatle@gmail.com
             </Link>
           </Button>
           <Button
