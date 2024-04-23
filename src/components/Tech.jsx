@@ -16,7 +16,7 @@ const Tech = () => {
       "Angular 9",
     ],
     tecnologies: ["AWS", "GCP", "Jenkins", "Docker", "Git", "Clerk", "Prisma"],
-    misc: ["MSSQL", "MongoDB", "HTML5", "CSS", "ShadCN", "Tailwind CSS"],
+    misc: ["MSSQL", "MongoDB", "Postgres","HTML5", "CSS", "ShadCN", "Tailwind CSS"],
   };
   return (
     <div
