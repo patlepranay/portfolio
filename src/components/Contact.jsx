@@ -134,7 +134,7 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="Micheal Scott"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border-none font-medium"
+              className="bg-primary py-4 px-6 placeholder:text-secondary text-white border  font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -145,7 +145,7 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="michealscott@dundermifflin.com"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white border font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -156,7 +156,7 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder="World's Best Boss"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white outline-none border-none font-medium"
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white border font-medium"
             />
           </label>
 
