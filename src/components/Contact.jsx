@@ -95,13 +95,13 @@ const Contact = () => {
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-            <Link to="https://www.linkedin.com/in/pranayhpatle/">LinkedIn</Link>
+            <Link to="https://www.linkedin.com/in/pranayhpatle/" target="_blank" rel="noopener noreferrer">LinkedIn</Link>
           </Button>
           <Button
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-            <Link to="https://www.instagram.com/campooter_ng_near/">
+            <Link to="https://www.instagram.com/campooter_ng_near/" target="_blank" rel="noopener noreferrer">
               Instagram
             </Link>
           </Button>
@@ -118,6 +118,22 @@ const Contact = () => {
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
             <span>+918180875642</span>
+          </Button>
+          <Button
+            variant="link"
+            className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
+          >
+           <Link to="https://leetcode.com/u/pranay29/" target="_blank" rel="noopener noreferrer">
+            LeetCode
+            </Link>
+          </Button>
+          <Button
+            variant="link"
+            className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
+          >
+           <Link to="https://github.com/patlepranay" target="_blank" rel="noopener noreferrer">
+            Github
+            </Link>
           </Button>
         </div>
         <p className={styles.sectionHeadText}>Get in touch</p>

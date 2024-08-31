@@ -10,15 +10,9 @@ import { styles } from "../styles";
 
 import { SectionWrapper } from "../hoc";
 import { TCS } from "@/assets";
+import {  workExp } from "@/constants";
 
 const Experience = () => {
-  const bullet = [
-    " Exercised a comprehensive skill set in my capacity as a Full Stack Developer, coupled with leadership responsibilities as the Support Lead, enhancing project efficiency.",
-    "Leading the backend engineering for a client project, tasks include designing database models and APIs to extrapolate essential information from raw data.",
-    "Effectively managed an 8-member team and oversaw stand-up calls, client interactions, code reviews, and project strategies.",
-    " Proficiently implemented APIs along with the integration of AWS cloud services and authentication middleware. Enhanced system performance, leading to a 50% decrease in execution time. Additionally, played an active role in service deployment in Openshift with Jenkins CI/CD.",
-    "Developed a hybrid web/mobile application to implement offline capabilities, refined synchronization processes, and resolved complex scalability issues, resulting in the improvement of network efficiency and overall performance.",
-  ];
   return (
     <>
       <div id="experience">
@@ -26,7 +20,7 @@ const Experience = () => {
           My Professional Journey
         </p>
         <h2 className={`${styles.sectionHeadText} text-center`}>
-          Work Experience.
+          Work Experience
         </h2>
       </div>
 
@@ -51,7 +45,7 @@ const Experience = () => {
             }
           >
             <div>
-              <h3 className="text-white text-[24px] font-bold">{`System Engineer`}</h3>
+              <h3 className="text-white text-[24px] font-bold">{`Full Stack Developer`}</h3>
               <p
                 className="text-secondary text-[16px] font-semibold"
                 style={{ margin: 0 }}
@@ -61,13 +55,11 @@ const Experience = () => {
             </div>
 
             <ul className="mt-5 list-disc ml-5 space-y-2">
-              {bullet.map((point,index) => (
+              {workExp.map((point,index) => (
                 <li className="text-white-100 text-[14px] pl-1 tracking-wider" key={index}>
                   {point}
                 </li>
               ))}
-
-            
             </ul>
           </VerticalTimelineElement>
         </VerticalTimeline>

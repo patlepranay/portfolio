@@ -11,6 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 export const HoverEffect = ({ items, className, type = "array" }) => {
   let [hoveredIndex, setHoveredIndex] = useState(null);
 
+  console.log(items)
   return (
     <div className={cn("grid md:grid-cols-3 grid-cols-2  ", className)}>
       {items.map((item, idx) => (

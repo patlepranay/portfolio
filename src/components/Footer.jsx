@@ -1,3 +1,4 @@
+import { lastUpdated } from "@/constants";
 import React from "react";
 
 const Footer = () => {
@@ -23,6 +24,15 @@ const Footer = () => {
               }
             >
               Designed and Developed by Pranay
+            </h2>
+          </div>
+          <div>
+            <h2
+              className={
+                "sm:text-[16px] text-[12px] text-secondary uppercase tracking-wider"
+              }
+            >
+              {`Last Updated - ${lastUpdated}`}
             </h2>
           </div>
         </section>

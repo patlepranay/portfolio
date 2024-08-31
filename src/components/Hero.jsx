@@ -22,9 +22,9 @@ const Hero = () => {
             </a>
           </div>
           <div className="flex border row-span-1 h-1/2 items-center justify-center">
-            <HashLink to="/#tech"  className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200 p-8`}>
+            <HashLink to="/#tech" className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200 p-8`}>
               <p
-               
+
               >
                 Tech Stack I work on
               </p>
@@ -80,6 +80,7 @@ const Hero = () => {
               Reach out to me{" "}
             </span>
           </HashLink>
+        
         </div>
       </div>
     </section>
