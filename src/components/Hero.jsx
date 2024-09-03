@@ -3,10 +3,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Resume from "../../public/Pranay_Patle_Resume.pdf";
+import { toast } from "./ui/use-toast";
 
 const Hero = () => {
   const onResumeClick = () => {
-    window.open(Resume);
+    toast({
+      title: 'Error displaying resume.',
+      description: 'Please try again later'
+    })
+    // window.open(Resume);
   };
   return (
     <section className={` flex flex-col  w-full h-screen mx-auto z-5 p-1`}>
@@ -80,7 +85,7 @@ const Hero = () => {
               Reach out to me{" "}
             </span>
           </HashLink>
-        
+
         </div>
       </div>
     </section>
