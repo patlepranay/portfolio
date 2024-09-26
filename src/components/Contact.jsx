@@ -63,7 +63,6 @@ const Contact = () => {
           },
           (error) => {
             setLoading(false);
-            console.error(error);
 
             toast({
               title: "Aaah! It worked on my machine",
