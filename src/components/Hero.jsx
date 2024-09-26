@@ -7,11 +7,16 @@ import { toast } from "./ui/use-toast";
 
 const Hero = () => {
   const onResumeClick = () => {
-    toast({
-      title: 'Error displaying resume.',
-      description: 'Please try again later'
-    })
-    // window.open(Resume);
+    try {
+
+      window.open(Resume);
+    } catch (error) {
+
+      toast({
+        title: 'Error displaying resume.',
+        description: 'Please try again later'
+      })
+    }
   };
   return (
     <section className={` flex flex-col  w-full h-screen mx-auto z-5 p-1`}>

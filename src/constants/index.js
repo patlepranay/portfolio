@@ -109,11 +109,11 @@ const works = {
 const workExp = [
   "In my capacity as a Full Stack Developer, I manage and develop frontend interfaces, backend processes, and database structures, ensuring that all components work harmoniously together for a fluid and efficient application experience.",
   "Leading the backend engineering for a client project, tasks include designing database models and APIs to extrapolate essential information from raw data.",
-  "Effectively managed an 4-member team and oversaw stand-up calls, client interactions, code reviews, and project strategies.",
+  "Effectively managed an 8-member team and oversaw stand-up calls, client interactions, code reviews, and project strategies.",
   "Migrated legacy desktop applications into modern, responsive single-page applications using React hence enhancing user experience and improved accessibility.",
   " Proficiently implemented REST APIs along with the integration of AWS cloud services and authentication middleware."," Enhanced system performance, leading to a 50% decrease in execution time. Additionally, played an active role in service deployment in Openshift with Jenkins CI/CD.",
   "Developed a hybrid web/mobile application to implement offline capabilities, refined synchronization processes, and resolved complex scalability issues, resulting in the improvement of network efficiency and overall performance.",
 ];
 
-const lastUpdated="31 August 2024"
+const lastUpdated="21 Sept 2024"
 export { workExp, about, projects, works ,lastUpdated};
