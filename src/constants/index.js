@@ -1,4 +1,13 @@
-import { Dashboard, Editor, NoImage, Telehealth, Ticket, url } from "@/assets";
+import {
+  azuga,
+  Dashboard,
+  Editor,
+  NoImage,
+  TCS,
+  Telehealth,
+  Ticket,
+  url,
+} from "@/assets";
 
 export const navLinks = [
   {
@@ -27,7 +36,7 @@ export const navLinks = [
 const about = {
   overview1: `I am a dedicated and versatile full-stack developer with over three years of experience in designing and developing web applications, hybrid mobile apps, and other cutting-edge technologies. I have a strong background in various programming languages, frameworks, and emerging technologies, allowing me to create robust and scalable solutions across different platforms.`,
   overview2: `  I graduated with a B.Tech in Computer Science from the Government College of Engineering, Amravati, in 2021. My passion is centered on distributed systems, system design, and full-stack development. I enjoy pushing the limits of technology, constantly learning new tools and techniques to stay ahead in the field.  `,
-  overview3: `  Driven by a commitment to excellence and a keen attention to detail, I aim to create impactful solutions that exceed expectations. I’m always eager to explore the latest advancements in technology, continuously growing my skills to deliver outstanding results in every project.`
+  overview3: `  Driven by a commitment to excellence and a keen attention to detail, I aim to create impactful solutions that exceed expectations. I’m always eager to explore the latest advancements in technology, continuously growing my skills to deliver outstanding results in every project.`,
 };
 
 const projects = [
@@ -103,17 +112,36 @@ const works = {
           also served as stepping stones in my continuous journey of growth and
           proficiency. I am enthusiastic about sharing these projects as they
           reflect my passion for hands-on learning and the evolving nature of my
-          expertise.`
-}
+          expertise.`,
+};
 
 const workExp = [
-  "In my capacity as a Full Stack Developer, I manage and develop frontend interfaces, backend processes, and database structures, ensuring that all components work harmoniously together for a fluid and efficient application experience.",
-  "Leading the backend engineering for a client project, tasks include designing database models and APIs to extrapolate essential information from raw data.",
-  "Effectively managed an 8-member team and oversaw stand-up calls, client interactions, code reviews, and project strategies.",
-  "Migrated legacy desktop applications into modern, responsive single-page applications using React hence enhancing user experience and improved accessibility.",
-  " Proficiently implemented REST APIs along with the integration of AWS cloud services and authentication middleware."," Enhanced system performance, leading to a 50% decrease in execution time. Additionally, played an active role in service deployment in Openshift with Jenkins CI/CD.",
-  "Developed a hybrid web/mobile application to implement offline capabilities, refined synchronization processes, and resolved complex scalability issues, resulting in the improvement of network efficiency and overall performance.",
+  {
+    jobTitle: "Software Engineer : Full Stack Developer",
+    companyName: "Azuga Telematics, Bangalore",
+    date: `Nov 24 to Present`,
+    details: [
+      "Working as a Full Stack Developer, actively contributing to the development and enhancement of the company owned web application.",
+      "Developing end to end data flow and ingestion through different telematics provider leveraging Azure Lambdas and State Machines."
+    ],
+    icon: azuga,
+  },
+  {
+    jobTitle: "System Engineer : Full Stack Developer",
+    companyName: "Tata Consultancy Services, Pune",
+    date: `Jul 21 to Nov 24`,
+    details: [
+      "In my capacity as a Full Stack Developer, I manage and develop frontend interfaces, backend processes, and database structures, ensuring that all components work harmoniously together for a fluid and efficient application experience.",
+      "Leading the backend engineering for a client project, tasks include designing database models and APIs to extrapolate essential information from raw data.",
+      "Effectively managed an 8-member team and oversaw stand-up calls, client interactions, code reviews, and project strategies.",
+      "Migrated legacy desktop applications into modern, responsive single-page applications using React hence enhancing user experience and improved accessibility.",
+      " Proficiently implemented REST APIs along with the integration of AWS cloud services and authentication middleware.",
+      " Enhanced system performance, leading to a 50% decrease in execution time. Additionally, played an active role in service deployment in Openshift with Jenkins CI/CD.",
+      "Developed a hybrid web/mobile application to implement offline capabilities, refined synchronization processes, and resolved complex scalability issues, resulting in the improvement of network efficiency and overall performance.",
+    ],
+    icon: TCS,
+  },
 ];
 
-const lastUpdated="21 Sept 2024"
-export { workExp, about, projects, works ,lastUpdated};
+const lastUpdated = "21 Sept 2024";
+export { workExp, about, projects, works, lastUpdated };
