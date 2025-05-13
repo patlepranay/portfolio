@@ -22,7 +22,7 @@ const Hero = () => {
   const [value, setValue] = useState(new Date());
 
   useEffect(() => {
-    const interval = setInterval(() => setValue(new Date()), 1000);
+    const interval = setInterval(() => setValue(new Date()), 1000 * 60);
 
     return () => {
       clearInterval(interval);
@@ -35,7 +35,6 @@ const Hero = () => {
 
   const date = now.toLocaleDateString('en-GB');
 
-  console.log(value)
 
   return (
     <section className={` flex flex-col  w-full h-screen mx-auto z-5 p-1`}>
@@ -128,7 +127,7 @@ const Hero = () => {
             <span
               className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
             >
-              {value.toLocaleTimeString()}
+              {value.getHours() + ":" + value.getMinutes()}
             </span>
           </div>
 
