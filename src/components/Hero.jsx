@@ -1,9 +1,10 @@
 import { styles } from "@/styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Resume from "../../public/Pranay_Patle_Resume.pdf";
 import { toast } from "./ui/use-toast";
+import Clock from 'react-clock';
 
 const Hero = () => {
   const onResumeClick = () => {
@@ -18,20 +19,23 @@ const Hero = () => {
       })
     }
   };
-  let time = new Date().toLocaleTimeString()
+  const [value, setValue] = useState(new Date());
 
-  const [ctime, setTime] = useState(time)
-  const UpdateTime = () => {
-    time = new Date().toLocaleTimeString()
-    setTime(time)
-  }
-  setInterval(UpdateTime)
+  useEffect(() => {
+    const interval = setInterval(() => setValue(new Date()), 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const now = new Date();
   const day = days[now.getDay()]; // e.g., "Monday"
 
   const date = now.toLocaleDateString('en-GB');
+
+  console.log(value)
 
   return (
     <section className={` flex flex-col  w-full h-screen mx-auto z-5 p-1`}>
@@ -124,7 +128,7 @@ const Hero = () => {
             <span
               className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
             >
-              {ctime}
+              {value.toLocaleTimeString()}
             </span>
           </div>
 
