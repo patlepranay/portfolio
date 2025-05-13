@@ -1,5 +1,5 @@
 import { styles } from "@/styles";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import Resume from "../../public/Pranay_Patle_Resume.pdf";
@@ -18,6 +18,21 @@ const Hero = () => {
       })
     }
   };
+  let time = new Date().toLocaleTimeString()
+
+  const [ctime, setTime] = useState(time)
+  const UpdateTime = () => {
+    time = new Date().toLocaleTimeString()
+    setTime(time)
+  }
+  setInterval(UpdateTime)
+
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const now = new Date();
+  const day = days[now.getDay()]; // e.g., "Monday"
+
+  const date = now.toLocaleDateString('en-GB');
+
   return (
     <section className={` flex flex-col  w-full h-screen mx-auto z-5 p-1`}>
       <div className="grid grid-cols-10  h-[65%] w-full ">
@@ -82,18 +97,42 @@ const Hero = () => {
             </span>
           </HashLink>
         </div>
-        <div className="h-full col-span-3 border-l border-b border-r items-center justify-center p-6 flex">
-          <HashLink to="#contact">
+        <div className="col-span-3 grid grid-rows-6 border-l border-r border-b ">
+
+          <div className="row-span-4 flex border-b justify-center items-center">
             <span
               className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
             >
-              Reach out to me{" "}
+              About me
             </span>
-          </HashLink>
+          </div>
+          <div className="row-span-2 flex flex-col  justify-center items-center">
+            <div className=" flex flex-col md:flex-row md:gap-4 items-center justify-center">
+
+
+              <span
+                className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
+              >
+                {day}{ }
+              </span>
+              <span
+                className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
+              >
+                {date}
+              </span>
+            </div>
+            <span
+              className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
+            >
+              {ctime}
+            </span>
+          </div>
+
+
 
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
