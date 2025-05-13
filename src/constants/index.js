@@ -143,5 +143,5 @@ const workExp = [
   },
 ];
 
-const lastUpdated = "13 May 2025";
+const lastUpdated = "21 Sept 2024";
 export { workExp, about, projects, works, lastUpdated };

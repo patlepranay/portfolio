@@ -27,7 +27,6 @@
     "lucide-react": "^0.331.0",
     "maath": "^0.10.7",
     "react": "^18.2.0",
-    "react-clock": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-resizable-panels": "^2.0.9",
     "react-router-dom": "^6.22.1",
