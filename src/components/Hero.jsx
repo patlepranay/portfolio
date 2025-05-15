@@ -22,7 +22,7 @@ const Hero = () => {
     <section className={` flex flex-col  w-full h-screen mx-auto z-5 p-1`}>
       <div className="grid grid-cols-10  h-[65%] w-full ">
         <div className="h-full  grid-rows-2 col-span-4   ">
-          <div className="flex border row-span-1 h-1/2 items-center justify-center">
+          <div className="flex border-r border-l border-t row-span-1 h-1/2 items-center justify-center">
             <a onClick={onResumeClick}>
               <span
                 className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white text-center transition cursor-pointer duration-200 `}
