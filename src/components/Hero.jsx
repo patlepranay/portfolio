@@ -103,11 +103,15 @@ const Hero = () => {
         <div className="col-span-3 grid grid-rows-6 border-l border-r border-b ">
 
           <div className="row-span-4 flex border-b justify-center items-center">
-            <span
-              className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
-            >
-              About me
-            </span>
+            <HashLink to="#contact">
+
+              <span
+                className={`${styles.sectionSubText}font-semibold text-neutral-400 hover:text-white  transition duration-200`}
+              >
+                React out to me
+              </span>
+            </HashLink>
+
           </div>
           <div className="row-span-2 flex flex-col  justify-center items-center">
             <div className=" flex flex-col md:flex-row md:gap-4 items-center justify-center">
