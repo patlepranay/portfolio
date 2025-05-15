@@ -37,7 +37,7 @@ const Hero = () => {
 
 
   return (
-    <section className={` flex flex-col  w-full h-screen mx-auto z-5 p-1`}>
+    <section className={` flex flex-col  w-full h-dvh mx-auto z-5 p-1`}>
       <div className="grid grid-cols-10  h-[65%] w-full ">
         <div className="h-full  grid-rows-2 col-span-4   ">
           <div className="flex border-r border-l border-t row-span-1 h-1/2 items-center justify-center">
