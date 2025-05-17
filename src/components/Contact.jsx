@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 
 const Contact = () => {
-  const formRef = useRef();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -32,53 +31,64 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      emailjs
-        .send(
-          import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-          {
-            from_name: form.name,
 
-            from_email: form.email,
+    if (form.name == "" || form.message == '' || form.email) {
+      toast({
+        title: "You forogt to write message.",
+        description: "Fill out name, email and message.",
+      });
 
-            message: form.message,
-          },
-          import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-        )
-        .then(
-          () => {
-            setLoading(false);
-            toast({
-              title: "Thanks for reaching out.",
-              description: "I'll get back to you asap.",
-            });
-
-            setForm({
-              name: "",
-              email: "",
-              message: "",
-            });
-          },
-          (error) => {
-            setLoading(false);
-
-            toast({
-              title: "Aaah! It worked on my machine",
-              description: "Will try to fix this issue.",
-            });
-          }
-        );
-    } catch {
-      setTimeout(() => {
-        setLoading(false);
-        toast({
-          title: "Aaah! It worked on my machine",
-          description: "Will try to fix this issue.",
-        });
-      }, 5000);
     }
+    else {
+      setLoading(true);
+      try {
+        emailjs
+          .send(
+            import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+            import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+            {
+              from_name: form.name,
+
+              from_email: form.email,
+
+              message: form.message,
+            },
+            import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+          )
+          .then(
+            () => {
+              setLoading(false);
+              toast({
+                title: "Thanks for reaching out.",
+                description: "I'll get back to you asap.",
+              });
+
+              setForm({
+                name: "",
+                email: "",
+                message: "",
+              });
+            },
+            (error) => {
+              setLoading(false);
+
+              toast({
+                title: "Aaah! It worked on my machine",
+                description: "Will try to fix this issue.",
+              });
+            }
+          );
+      } catch {
+        setTimeout(() => {
+          setLoading(false);
+          toast({
+            title: "Aaah! It worked on my machine",
+            description: "Will try to fix this issue.",
+          });
+        }, 5000);
+      }
+    }
+
   };
 
   return (
@@ -86,7 +96,7 @@ const Contact = () => {
       className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
     >
       <div className="flex-[.75] bg-black-100 gap-10 space-y-10">
-        
+
         <h3 className={`text-white font-black md:text-[30px] sm:text-[50px] xs:text-[40px] text-[30px]`}>Find me on</h3>
 
         <div className="  flex  flex-col md:flex-row  gap-4 ">
@@ -109,7 +119,7 @@ const Contact = () => {
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
             <Link to="mailto:pranayhpatle@gmail.com">
-            pranayhpatle@gmail.com
+              pranayhpatle@gmail.com
             </Link>
           </Button>
           <Button
@@ -122,22 +132,21 @@ const Contact = () => {
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-           <Link to="https://leetcode.com/u/pranay29/" target="_blank" rel="noopener noreferrer">
-            LeetCode
+            <Link to="https://leetcode.com/u/pranay29/" target="_blank" rel="noopener noreferrer">
+              LeetCode
             </Link>
           </Button>
           <Button
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-           <Link to="https://github.com/patlepranay" target="_blank" rel="noopener noreferrer">
-            Github
+            <Link to="https://github.com/patlepranay" target="_blank" rel="noopener noreferrer">
+              Github
             </Link>
           </Button>
         </div>
         <p className={styles.sectionHeadText}>Get in touch</p>
         <form
-          ref={formRef}
           onSubmit={handleSubmit}
           className="mt-12 flex flex-col gap-8"
         >
