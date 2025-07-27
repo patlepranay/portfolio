@@ -32,14 +32,12 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (form.name == "" || form.message == '' || form.email) {
+    if (form.name == "" || form.message == "" || form.email) {
       toast({
         title: "You forogt to write message.",
         description: "Fill out name, email and message.",
       });
-
-    }
-    else {
+    } else {
       setLoading(true);
       try {
         emailjs
@@ -53,7 +51,7 @@ const Contact = () => {
 
               message: form.message,
             },
-            import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+            import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY,
           )
           .then(
             () => {
@@ -76,7 +74,7 @@ const Contact = () => {
                 title: "Aaah! It worked on my machine",
                 description: "Will try to fix this issue.",
               });
-            }
+            },
           );
       } catch {
         setTimeout(() => {
@@ -88,7 +86,6 @@ const Contact = () => {
         }, 5000);
       }
     }
-
   };
 
   return (
@@ -96,21 +93,34 @@ const Contact = () => {
       className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
     >
       <div className="flex-[.75] bg-black-100 gap-10 space-y-10">
-
-        <h3 className={`text-white font-black md:text-[30px] sm:text-[50px] xs:text-[40px] text-[30px]`}>Find me on</h3>
+        <h3
+          className={`text-white font-black md:text-[30px] sm:text-[50px] xs:text-[40px] text-[30px]`}
+        >
+          Find me on
+        </h3>
 
         <div className="  flex  flex-col md:flex-row  gap-4 ">
           <Button
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-            <Link to="https://www.linkedin.com/in/pranayhpatle/" target="_blank" rel="noopener noreferrer">LinkedIn</Link>
+            <Link
+              to="https://www.linkedin.com/in/pranayhpatle/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </Link>
           </Button>
           <Button
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-            <Link to="https://www.instagram.com/campooter_ng_near/" target="_blank" rel="noopener noreferrer">
+            <Link
+              to="https://www.instagram.com/campooter_ng_near/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Instagram
             </Link>
           </Button>
@@ -132,7 +142,11 @@ const Contact = () => {
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-            <Link to="https://leetcode.com/u/pranay29/" target="_blank" rel="noopener noreferrer">
+            <Link
+              to="https://leetcode.com/u/pranay29/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               LeetCode
             </Link>
           </Button>
@@ -140,16 +154,17 @@ const Contact = () => {
             variant="link"
             className="p-6 border border-neutral-700 transition duration-200 hover:border-white hover:cursor-pointer"
           >
-            <Link to="https://github.com/patlepranay" target="_blank" rel="noopener noreferrer">
+            <Link
+              to="https://github.com/patlepranay"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Github
             </Link>
           </Button>
         </div>
         <p className={styles.sectionHeadText}>Get in touch</p>
-        <form
-          onSubmit={handleSubmit}
-          className="mt-12 flex flex-col gap-8"
-        >
+        <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-8">
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Your Name</span>
             <input

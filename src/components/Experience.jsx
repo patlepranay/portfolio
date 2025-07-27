@@ -32,7 +32,6 @@ const Experience = () => {
               contentStyle={{
                 background: "transparent",
                 color: "#fff",
-
               }}
               contentArrowStyle={{ borderRight: "7px solid  #fff" }}
               date={<span>{exp.date}</span>}
@@ -47,9 +46,10 @@ const Experience = () => {
                 </div>
               }
             >
-
-              <div >
-                <h3 className="text-white text-[24px] font-bold">{exp.jobTitle}</h3>
+              <div>
+                <h3 className="text-white text-[24px] font-bold">
+                  {exp.jobTitle}
+                </h3>
                 <p
                   className="text-secondary text-[16px] font-semibold"
                   style={{ margin: 0 }}
@@ -58,16 +58,15 @@ const Experience = () => {
                 </p>
                 <ul className="mt-5 list-disc ml-5 space-y-2">
                   {exp.details.map((point, index) => (
-                    <li key={index} className="text-white-100 text-[14px] pl-1 tracking-wider">
+                    <li
+                      key={index}
+                      className="text-white-100 text-[14px] pl-1 tracking-wider"
+                    >
                       {point}
                     </li>
-
                   ))}
                 </ul>
               </div>
-
-
-
             </VerticalTimelineElement>
           ))}
         </VerticalTimeline>

@@ -9,9 +9,7 @@ import { SectionWrapper } from "../hoc";
 import { HoverEffect } from "./ui/hover-effect";
 import { projects, works } from "@/constants";
 
-
 const Works = () => {
- 
   return (
     <>
       <motion.div id="projects">

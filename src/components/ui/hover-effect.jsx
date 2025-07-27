@@ -3,7 +3,7 @@
 import { github } from "@/assets";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import {  Link } from "lucide-react";
+import { Link } from "lucide-react";
 
 import React, { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
@@ -78,7 +78,6 @@ export const HoverEffect = ({ items, className, type = "array" }) => {
                     </PopoverContent>
                   </Popover>
                 ) : (
-                  
                   <a
                     href={item.source_code_link}
                     target="_blank"
@@ -125,7 +124,7 @@ export const Card = ({ className, children }) => {
     <div
       className={cn(
         " h-full w-full overflow-hidden bg-stone-950 border border-neutral-700 dark:border-white    hover:border-transparent transition-all duration-500 ease-in-out	 relative z-20 p-6",
-        className
+        className,
       )}
     >
       <div className="relative z-50">
@@ -142,7 +141,7 @@ export const CardDescription = ({ className, children }) => {
     <p
       className={cn(
         " text-zinc-300 tracking-wide leading-relaxed text-sm",
-        className
+        className,
       )}
     >
       {children}

@@ -7,7 +7,11 @@ const Footer = () => {
       <footer className="max-w-7xl mx-auto sm:px-16 px-6 py-2">
         <section className="flex md:flex-row flex-col justify-between items-center space-y-2">
           <div>
-            <a href="https://github.com/patlepranay/developer_portfolio" target="_blank" rel="noreferrer">
+            <a
+              href="https://github.com/patlepranay/developer_portfolio"
+              target="_blank"
+              rel="noreferrer"
+            >
               <p
                 className={
                   "sm:text-[16px] text-[12px] text-secondary uppercase tracking-wider underline"

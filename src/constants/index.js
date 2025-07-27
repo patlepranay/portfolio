@@ -122,7 +122,7 @@ const workExp = [
     date: `Nov 24 to Present`,
     details: [
       "Working as a Full Stack Developer, actively contributing to the development and enhancement of the company owned web application.",
-      "Developing end to end data flow and ingestion through different telematics provider leveraging Azure Lambdas and State Machines."
+      "Developing end to end data flow and ingestion through different telematics provider leveraging Azure Lambdas and State Machines.",
     ],
     icon: azuga,
   },

@@ -13,15 +13,24 @@ const About = () => {
         <h2 className={styles.sectionHeadText}>Overview</h2>
       </div>
 
-      <p style={{ textIndent: '1.5rem' }} className="  text-secondary text-[17px] max-w-3xl leading-[30px]">
+      <p
+        style={{ textIndent: "1.5rem" }}
+        className="  text-secondary text-[17px] max-w-3xl leading-[30px]"
+      >
         {about.overview1}
       </p>
       <br />
-      <p style={{ textIndent: '1.5rem' }} className="  text-secondary text-[17px] max-w-3xl leading-[30px]">
+      <p
+        style={{ textIndent: "1.5rem" }}
+        className="  text-secondary text-[17px] max-w-3xl leading-[30px]"
+      >
         {about.overview2}
       </p>
       <br />
-      <p style={{ textIndent: '1.5rem' }} className=" text-secondary text-[17px] max-w-3xl leading-[30px]">
+      <p
+        style={{ textIndent: "1.5rem" }}
+        className=" text-secondary text-[17px] max-w-3xl leading-[30px]"
+      >
         {about.overview3}
       </p>
     </>
