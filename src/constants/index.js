@@ -34,7 +34,7 @@ export const navLinks = [
 // thinking.`
 // };
 const about = {
-  overview1: `I am a dedicated and versatile full-stack developer with over three years of experience in designing and developing web applications, hybrid mobile apps, and other cutting-edge technologies. I have a strong background in various programming languages, frameworks, and emerging technologies, allowing me to create robust and scalable solutions across different platforms.`,
+  overview1: `I am a dedicated and versatile full-stack developer with over 4 years of experience in designing and developing web applications, hybrid mobile apps, and other cutting-edge technologies. I have a strong background in various programming languages, frameworks, and emerging technologies, allowing me to create robust and scalable solutions across different platforms.`,
   overview2: `  I graduated with a B.Tech in Computer Science from the Government College of Engineering, Amravati, in 2021. My passion is centered on distributed systems, system design, and full-stack development. I enjoy pushing the limits of technology, constantly learning new tools and techniques to stay ahead in the field.  `,
   overview3: `  Driven by a commitment to excellence and a keen attention to detail, I aim to create impactful solutions that exceed expectations. I’m always eager to explore the latest advancements in technology, continuously growing my skills to deliver outstanding results in every project.`,
 };
@@ -118,11 +118,11 @@ const works = {
 const workExp = [
   {
     jobTitle: "Software Engineer : Full Stack Developer",
-    companyName: "Azuga Telematics, Bangalore",
+    companyName: "Azuga Telematics, Bangalore-Remote",
     date: `Nov 24 to Present`,
     details: [
       "Working as a Full Stack Developer, actively contributing to the development and enhancement of the company owned web application.",
-      "Developing end to end data flow and ingestion through different telematics provider leveraging Azure Lambdas and State Machines."
+      "Developing end to end data flow and ingestion through different telematics provider leveraging Azure Lambdas and State Machines.",
     ],
     icon: azuga,
   },
