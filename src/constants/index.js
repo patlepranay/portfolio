@@ -117,12 +117,14 @@ const works = {
 
 const workExp = [
   {
-    jobTitle: "Software Engineer : Full Stack Developer",
+    jobTitle: "Senior Software Engineer : Full Stack Developer",
     companyName: "Azuga Telematics, Bangalore-Remote",
     date: `Nov 24 to Present`,
     details: [
-      "Working as a Full Stack Developer, actively contributing to the development and enhancement of the company owned web application.",
-      "Developing end to end data flow and ingestion through different telematics provider leveraging Azure Lambdas and State Machines.",
+      "Building telematics analytics platform using React and Django, delivering real-time insights and reporting capabilities for end users.",
+      "Unified Power BI dashboards and custom APIs into a single responsive web interface, centralizing data visualization and decision - making tools.",
+      "Designed and implemented a scalable AWS Step Functions and Lambda-based data pipeline, supporting automated ingestion and processing of data from multiple third - party telematics service providers(TSPs).",
+      "Optimized PostgreSQL for time-series data by introducing advanced indexing and partitioning strategies, resulting in up to 100x faster query performance and dramatically improved frontend load times.",
     ],
     icon: azuga,
   },
