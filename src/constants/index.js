@@ -41,6 +41,17 @@ const about = {
 
 const projects = [
   {
+    title: "pg-stats-cli",
+    description:
+      "pg-stats-cli is a Node.js command-line tool for inspecting PostgreSQL health, surfacing actionable performance findings, and helping manage useful extensions. It provides a quick overview of the database's health and performance, making it easier for developers and database administrators to identify and address potential issues.",
+    tags: ["npm", "nodejs", "postgresql", "cli"],
+    image: NoImage,
+    source_code_link: [
+      "https://github.com/patlepranay/pg-stats-cli",
+    ],
+    deploy_link: "https://www.npmjs.com/package/pg-stats-cli",
+  },
+  {
     title: "Telehealth Consultation",
     description:
       "A web-based platform tailored for hospitals integrates a video calling feature for appointments and addresses the requirement for a centralized repository managing both appointment schedules and patient medical histories. The inclusion of a single-page application enhances the overall user experience, providing a seamless and efficient interface. ",
