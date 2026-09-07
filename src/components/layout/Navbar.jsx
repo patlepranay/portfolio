@@ -1,17 +1,7 @@
 import React from "react";
 import { ThemeToggle } from "@/theme/ThemeToggle";
 import { useDeck } from "@/components/deck/deck-context";
-
-const LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Tech", href: "#tech" },
-  { label: "Work", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
-
-const RESUME_URL = "/Pranay_Patle_Resume.pdf";
+import { navItems, resumeUrl } from "@/data/constants";
 
 /**
  * Floating bottom pill. Sits centered above the fold line (bottom-4), always
@@ -37,12 +27,13 @@ export const Navbar = () => {
         </a>
 
         <div className="flex items-center gap-0.5 overflow-x-auto no-scrollbar">
-          {LINKS.map((l) => {
-            const isActive = active === l.href;
+          {navItems.map((l) => {
+            const href = `#${l.id}`;
+            const isActive = active === href;
             return (
               <a
-                key={l.href}
-                href={l.href}
+                key={l.id}
+                href={href}
                 aria-current={isActive ? "true" : undefined}
                 className={`shrink-0 rounded-full px-2.5 py-1.5 font-hud text-[11px] uppercase tracking-widest transition-colors sm:px-3.5 sm:text-xs ${
                   isActive
@@ -59,7 +50,7 @@ export const Navbar = () => {
         <span className="mx-1 hidden h-5 w-px shrink-0 bg-border sm:block" />
 
         <a
-          href={RESUME_URL}
+          href={resumeUrl}
           target="_blank"
           rel="noreferrer"
           className="hidden shrink-0 rounded-full px-3.5 py-1.5 font-hud text-xs uppercase tracking-widest text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline md:block"

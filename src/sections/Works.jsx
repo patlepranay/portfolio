@@ -4,7 +4,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { Reveal } from "@/components/deck/reveal";
 import { FxSplit } from "@/components/deck/fx";
 import { SectionHeading } from "@/components/layout/SectionHeading";
-import { projects, works } from "@/data/constants";
+import { projects, works, headings } from "@/data/constants";
 
 /** Per-card smooth 3D tilt toward the cursor (no re-render churn). */
 const TiltCard = ({ children, className = "" }) => {
@@ -119,7 +119,7 @@ const Works = () => {
   return (
     <section id="projects" className="relative overflow-hidden py-24 sm:py-28">
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading index="04" eyebrow="Selected builds" title="Work" />
+        <SectionHeading index={headings.works.index} eyebrow={headings.works.eyebrow} title={headings.works.title} />
         <Reveal
           index={1}
           className="mb-14 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg"

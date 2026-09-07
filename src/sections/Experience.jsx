@@ -7,17 +7,17 @@ import "react-vertical-timeline-component/style.min.css";
 import { Reveal } from "@/components/deck/reveal";
 import { FxSplit } from "@/components/deck/fx";
 import { SectionHeading } from "@/components/layout/SectionHeading";
-import { workExp } from "@/data/constants";
+import { workExp, headings } from "@/data/constants";
 
 const Experience = () => {
   return (
     <section id="experience" className="relative overflow-hidden py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
-          index="02"
+          index={headings.experience.index}
           align="center"
-          eyebrow="My journey"
-          title="Experience"
+          eyebrow={headings.experience.eyebrow}
+          title={headings.experience.title}
         />
 
         <Reveal index={1}>

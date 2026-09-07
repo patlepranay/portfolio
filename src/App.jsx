@@ -10,13 +10,14 @@ import Experience from "./sections/Experience";
 import Tech from "./sections/Tech";
 import Works from "./sections/Works";
 import Contact from "./sections/Contact";
+import { navItems } from "@/data/constants";
 
 /**
- * Section order doubles as the page order of the deck. Changing the order
- * here reorders navigation everywhere (navbar highlight, directional slide,
- * hash routing) — no per-section direction is ever hardcoded.
+ * Section order doubles as the page order of the deck. It follows the single
+ * `navItems` list in src/data/constants.js — reorder there and navigation,
+ * highlight, and hash routing all follow.
  */
-const ORDER = ["home", "about", "experience", "tech", "projects", "contact"];
+const ORDER = navItems.map((n) => n.id);
 
 const PAGES = [
   <Hero key="home" />,

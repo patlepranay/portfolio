@@ -9,30 +9,10 @@ import {
   url,
 } from "@/assets";
 
-export const navLinks = [
-  {
-    id: "about",
-    title: "About",
-  },
-  {
-    id: "work",
-    title: "Work",
-  },
-  {
-    id: "contact",
-    title: "Contact",
-  },
-];
+/* ================================================================== */
+/*  DATA                                                                */
+/* ================================================================== */
 
-// const about = {
-//   overview: `Passionate full-stack developer with three years of
-// professional experience in developing and managing
-// applications, web apps, and much more. Well-versed in
-// a range of programming languages, frameworks, and
-// database technologies and able to rapidly learn new
-// technologies. Great at problem-solving and analytical
-// thinking.`
-// };
 const about = {
   overview1: `I am a dedicated and versatile full-stack developer with over 5 years of experience in designing and developing web applications, hybrid mobile apps, and other cutting-edge technologies. I have a strong background in various programming languages, frameworks, and emerging technologies, allowing me to create robust and scalable solutions across different platforms.`,
   overview2: `  I graduated with a B.Tech in Computer Science from the Government College of Engineering, Amravati, in 2021. My passion is centered on distributed systems, system design, and full-stack development. I enjoy pushing the limits of technology, constantly learning new tools and techniques to stay ahead in the field.  `,
@@ -88,7 +68,6 @@ const projects = [
     source_code_link: ["https://github.com/patlepranay/event-manager"],
     deploy_link: "https://event-manager-khaki-zeta.vercel.app/",
   },
-
   {
     title: "Realtime React Dashboard",
     description:
@@ -164,6 +143,135 @@ const techStack = {
   technologies: ["AWS", "GCP", "Jenkins", "Docker", "Git", "Clerk", "Prisma"],
   misc: ["MSSQL", "MongoDB", "PostgreSQL", "HTML5", "CSS", "ShadCN", "Tailwind CSS"],
 };
+
 const allTech = Object.values(techStack).flat();
 
-export { workExp, about, projects, works, lastUpdated, techStack, allTech };
+/* ================================================================== */
+/*  SITE CONTENT — edit everything editable here.                       */
+/*  Sections read from these exports; tweak copy in one place.          */
+/* ================================================================== */
+
+const resumeUrl = "/Pranay_Patle_Resume.pdf";
+
+/* Section ordering doubles as page order — nav + routing follow this. */
+const navItems = [
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Experience", id: "experience" },
+  { label: "Tech", id: "tech" },
+  { label: "Work", id: "projects" },
+  { label: "Contact", id: "contact" },
+];
+
+/* Section headings — eyebrow/index/title per section. */
+const headings = {
+  about: { index: "01", eyebrow: "Who I am", title: "About me" },
+  experience: { index: "02", eyebrow: "My journey", title: "Experience" },
+  tech: { index: "03", eyebrow: "Toolbox", title: "Tech & tools" },
+  works: { index: "04", eyebrow: "Selected builds", title: "Work" },
+  contact: { index: "05", eyebrow: "Get in touch", title: "Let's build" },
+};
+
+/* Hero — giant name, kicker line, HUD stat strip, CTAs, bottom bar. */
+const hero = {
+  kicker: {
+    prefix: "▸",
+    role: "full-stack software engineer",
+    divider: "//",
+    extras: "web · cloud · realtime",
+  },
+  firstName: "Pranay",
+  lastName: "Patle",
+  hud: [
+    { value: "5+ yrs", text: " shipping" },
+    { sep: true },
+    { text: "scalable web" },
+    { sep: true, hide: true },
+    { text: "hybrid apps", hide: true },
+    { sep: true, hide: true },
+    { text: "cloud · aws/gcp", hide: true },
+  ],
+  scrollText: "scroll — build · ship · scale",
+  metaText: "2D · 2026",
+  cta: [
+    { kind: "primary", label: "view work", href: "#projects" },
+    { kind: "outline", label: "contact me", href: "#contact" },
+    { kind: "link", label: "résumé ↗", href: resumeUrl, external: true },
+  ],
+};
+
+/* About — quick-fact cards + focus-area chips. `icon` maps to a lucide
+   component in the section: role → Cog, based → MapPin, education → GraduationCap. */
+const aboutFacts = [
+  { icon: "role", label: "Role", value: "Senior Software Engineer · Full Stack" },
+  { icon: "based", label: "Based", value: "Remote · Bengaluru, India" },
+  { icon: "education", label: "Education", value: "B.Tech CSE · GCOE Amravati, 2021" },
+];
+const focusAreas = [
+  "Distributed systems",
+  "System design",
+  "Real-time apps",
+  "Cloud",
+  "Full-stack",
+];
+
+/* Tech groups — labels paired with techStack keys by order below. */
+const techGroups = [
+  { key: "languages", label: "Languages" },
+  { key: "frameworks", label: "Frameworks" },
+  { key: "technologies", label: "Technologies" },
+  { key: "misc", label: "Tools & Data" },
+];
+
+/* Contact — copy + reach links. */
+const contact = {
+  intro: `Have a role, an idea, or a tricky system-design problem? My inbox is always open — let's build something great.`,
+  email: "pranayhpatle@gmail.com",
+  phone: "+91 81808 75642",
+  socials: [
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/pranayhpatle/" },
+    { label: "Instagram", href: "https://www.instagram.com/campooter_ng_near/" },
+    { label: "GitHub", href: "https://github.com/patlepranay" },
+    { label: "LeetCode", href: "https://leetcode.com/u/pranay29/" },
+  ],
+  form: {
+    nameLabel: "Your name",
+    namePlaceholder: "Michael Scott",
+    emailLabel: "Your email",
+    emailPlaceholder: "michael@dundermifflin.com",
+    messageLabel: "Message",
+    messagePlaceholder: "World's Best Boss",
+    submit: "Send message",
+    sending: "Sending…",
+  },
+};
+
+/* Footer copy. */
+const footer = {
+  marker: "✱",
+  builtWith: "built with",
+  by: "by",
+  name: "Pranay Patle",
+  source: "Source",
+  sourceHref: "https://github.com/patlepranay/developer_portfolio",
+  updatedLabel: "Last updated",
+};
+
+export {
+  workExp,
+  about,
+  projects,
+  works,
+  lastUpdated,
+  techStack,
+  allTech,
+  resumeUrl,
+  navItems,
+  headings,
+  hero,
+  aboutFacts,
+  focusAreas,
+  techGroups,
+  contact,
+  footer,
+};

@@ -4,13 +4,7 @@ import { ExternalLink, Loader2, Mail, Phone } from "lucide-react";
 import { Reveal } from "@/components/deck/reveal";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { useToast } from "@/components/ui/use-toast";
-
-const SOCIALS = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/pranayhpatle/" },
-  { label: "Instagram", href: "https://www.instagram.com/campooter_ng_near/" },
-  { label: "GitHub", href: "https://github.com/patlepranay" },
-  { label: "LeetCode", href: "https://leetcode.com/u/pranay29/" },
-];
+import { contact, headings } from "@/data/constants";
 
 const inputCls =
   "w-full rounded-xl border border-border bg-background/50 px-4 py-3.5 text-base text-foreground placeholder:text-muted-foreground outline-none backdrop-blur-sm transition-colors focus:border-foreground focus:ring-1 focus:ring-foreground";
@@ -75,43 +69,38 @@ const Contact = () => {
       <div className="pointer-events-none absolute right-0 top-20 h-96 w-96 rounded-full bg-primary/10 blur-[130px]" />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading index="05" eyebrow="Get in touch" title="Let's build" />
+        <SectionHeading index={headings.contact.index} eyebrow={headings.contact.eyebrow} title={headings.contact.title} />
 
         <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
           {/* Info / socials */}
           <Reveal index={1} className="space-y-6">
             <p className="max-w-md text-lg leading-relaxed text-muted-foreground">
-              Have a role, an idea, or a tricky system-design problem? My inbox
-              is always open — let&apos;s build something great.
+              {contact.intro}
             </p>
 
             <div className="space-y-3">
               <a
-                href="mailto:pranayhpatle@gmail.com"
+                href={`mailto:${contact.email}`}
                 className="glass flex items-center gap-3 rounded-2xl p-4 transition-colors hover:border-primary/50"
               >
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/15 text-primary">
                   <Mail className="h-4 w-4" />
                 </span>
-                <span className="text-base text-foreground">
-                  pranayhpatle@gmail.com
-                </span>
+                <span className="text-base text-foreground">{contact.email}</span>
               </a>
               <a
-                href="tel:+918180875642"
+                href={`tel:${contact.phone.replace(/[\s-]/g, "")}`}
                 className="glass flex items-center gap-3 rounded-2xl p-4 transition-colors hover:border-primary/50"
               >
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/15 text-primary">
                   <Phone className="h-4 w-4" />
                 </span>
-                <span className="text-base text-foreground">
-                  +91 81808 75642
-                </span>
+                <span className="text-base text-foreground">{contact.phone}</span>
               </a>
             </div>
 
             <div className="flex flex-wrap gap-3">
-              {SOCIALS.map((s) => (
+              {contact.socials.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
@@ -135,25 +124,31 @@ const Contact = () => {
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="flex flex-col gap-2">
-                  <span className="font-hud text-xs uppercase tracking-widest text-foreground">Your name</span>
-                  <input name="name" type="text" placeholder="Michael Scott" className={inputCls} />
+                  <span className="font-hud text-xs uppercase tracking-widest text-foreground">
+                    {contact.form.nameLabel}
+                  </span>
+                  <input name="name" type="text" placeholder={contact.form.namePlaceholder} className={inputCls} />
                 </label>
                 <label className="flex flex-col gap-2">
-                  <span className="font-hud text-xs uppercase tracking-widest text-foreground">Your email</span>
+                  <span className="font-hud text-xs uppercase tracking-widest text-foreground">
+                    {contact.form.emailLabel}
+                  </span>
                   <input
                     name="email"
                     type="email"
-                    placeholder="michael@dundermifflin.com"
+                    placeholder={contact.form.emailPlaceholder}
                     className={inputCls}
                   />
                 </label>
               </div>
               <label className="flex flex-col gap-2">
-                <span className="font-hud text-xs uppercase tracking-widest text-foreground">Message</span>
+                <span className="font-hud text-xs uppercase tracking-widest text-foreground">
+                  {contact.form.messageLabel}
+                </span>
                 <textarea
                   name="message"
                   rows={6}
-                  placeholder="World's Best Boss"
+                  placeholder={contact.form.messagePlaceholder}
                   className={`${inputCls} resize-none`}
                 />
               </label>
@@ -164,7 +159,7 @@ const Contact = () => {
                 className="inline-flex items-center justify-center gap-2 border border-foreground bg-foreground px-7 py-3.5 font-hud text-sm font-bold uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-                {loading ? "Sending…" : "Send message"}
+                {loading ? contact.form.sending : contact.form.submit}
               </button>
             </form>
           </Reveal>
