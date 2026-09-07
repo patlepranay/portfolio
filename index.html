@@ -11,13 +11,30 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-L43NV8WHSY");
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pranay Patle Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="./src/assets/logo.png">
+    <meta
+      name="description"
+      content="Pranay Patle — Full-stack software engineer building scalable web applications, real-time products and cloud systems."
+    />
+    <title>Pranay Patle · Full-Stack Engineer</title>
+    <link rel="icon" type="image/x-icon" href="./src/assets/logo.png" />
+    <!-- Apply theme class before first paint to avoid a flash of the wrong scheme -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("portfolio-theme");
+          var dark = stored
+            ? stored === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

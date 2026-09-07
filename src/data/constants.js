@@ -157,4 +157,13 @@ const workExp = [
 ];
 
 const lastUpdated = "08 Aug 2026";
-export { workExp, about, projects, works, lastUpdated };
+
+const techStack = {
+  languages: ["JavaScript", "C#", "Python", "Java"],
+  frameworks: ["React", "NextJS", "Express", "Node JS", ".NET Core", "Angular 9"],
+  technologies: ["AWS", "GCP", "Jenkins", "Docker", "Git", "Clerk", "Prisma"],
+  misc: ["MSSQL", "MongoDB", "PostgreSQL", "HTML5", "CSS", "ShadCN", "Tailwind CSS"],
+};
+const allTech = Object.values(techStack).flat();
+
+export { workExp, about, projects, works, lastUpdated, techStack, allTech };

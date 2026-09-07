@@ -1,17 +1,245 @@
-@import url('https://fonts.googleapis.com/css2?family=Anta&family=League+Spartan:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/*  Semantic theme tokens  (monochrome — white + gray, no accent hue)  */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+
+  --radius: 0.85rem;
+
+  --background: 0 0% 97%;
+  --foreground: 0 0% 9%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 9%;
+
+  --muted: 0 0% 93%;
+  --muted-foreground: 0 0% 45%;
+
+  --border: 0 0% 86%;
+  --input: 0 0% 86%;
+  --ring: 0 0% 22%;
+
+  --primary: 0 0% 12%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 0 0% 94%;
+  --secondary-foreground: 0 0% 18%;
+
+  --accent: 0 0% 92%;
+  --accent-foreground: 0 0% 14%;
+
+  /* RGB triples, alpha applied via color-mix for glass surfaces */
+  --glass-tint: 255 255 255;
+  --glass-border: 224 224 224;
+  --glass-halo: 20 20 20;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: 0 0% 4%;
+  --foreground: 0 0% 95%;
+
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 95%;
+
+  --muted: 0 0% 13%;
+  --muted-foreground: 0 0% 60%;
+
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  --ring: 0 0% 70%;
+
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 6%;
+
+  --secondary: 0 0% 14%;
+  --secondary-foreground: 0 0% 92%;
+
+  --accent: 0 0% 16%;
+  --accent-foreground: 0 0% 95%;
+
+  --glass-tint: 28 28 31;
+  --glass-border: 52 52 58;
+  --glass-halo: 240 240 240;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "Poppins", sans-serif; */
   scroll-behavior: smooth;
-  color-scheme: dark;
+}
 
-  font-family: "Anta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+html,
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Full-screen "deck" shell — no document scrolling.                  */
+/*  Only the active page (its own internal scroll) ever scrolls.       */
+/* ------------------------------------------------------------------ */
+html,
+body {
+  height: 100%;
+  overscroll-behavior: none;
+}
+body {
+  overflow: hidden;
+}
+#root {
+  height: 100%;
+}
+
+/* A page occupies the full dynamic viewport. dvh keeps us clear of the
+   mobile browser chrome; vh first as a fallback for older engines. */
+.deck-page {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+.deck-frame {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Letter "power" effect. Each character is a .fx-char span whose       */
+/*  opacity transitions with its own --d delay when the deck toggles     */
+/*  `power-off`. The .fx-stage surface dims slightly later so cards,     */
+/*  icons and inputs don't linger after the letters die.                 */
+/* ------------------------------------------------------------------ */
+.fx-char {
+  opacity: 1;
+  will-change: opacity;
+  transition: opacity 0.12s ease var(--d, 0ms);
+}
+.fx-stage {
+  opacity: 1;
+  transition: opacity 0.22s ease 0s;
+}
+.power-off .fx-char {
+  opacity: 0;
+}
+.power-off .fx-stage {
+  opacity: 0;
+  transition-duration: 0.3s;
+  transition-delay: 0.5s;
+}
+
+/* Font roles: Syne = big display · Space Grotesk = body · Share Tech Mono = HUD */
+.font-display {
+  font-family: "Syne", sans-serif;
+}
+.font-hud {
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 0.08em;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Glass primitives                                                  */
+/* ------------------------------------------------------------------ */
+@layer utilities {
+  .glass {
+    background: color-mix(in srgb, rgb(var(--glass-tint)) 62%, transparent);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 55%, transparent);
+  }
+  .glass-strong {
+    background: color-mix(in srgb, rgb(var(--glass-tint)) 85%, transparent);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 70%, transparent);
+  }
+  .glass-nav {
+    background: color-mix(in srgb, rgb(var(--glass-tint)) 55%, transparent);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 45%, transparent);
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Scrollbar                                                          */
+/* ------------------------------------------------------------------ */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+::selection {
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+
+/* Keep 3D canvases from hijacking scroll */
+canvas {
+  display: block;
+  touch-action: pan-y;
+}
+
+/* ------------------------------------------------------------------ */
+/*  react-vertical-timeline-component overrides (theme-aware)          */
+/* ------------------------------------------------------------------ */
+.vertical-timeline-element-content {
+  box-shadow: none !important;
+}
+.vertical-timeline-element-date {
+  color: hsl(var(--muted-foreground)) !important;
+  opacity: 1 !important;
+}
+.vertical-timeline::before {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    hsl(var(--border)) 10%,
+    hsl(var(--border)) 90%,
+    transparent
+  ) !important;
+}
+@media only screen and (min-width: 1170px) {
+  .vertical-timeline.vertical-timeline--two-columns .vertical-timeline-element-icon {
+    width: 46px;
+    height: 46px;
+    left: 50%;
+    margin-left: -23px;
+  }
+  .vertical-timeline.vertical-timeline--two-columns
+    .vertical-timeline-element-content
+    .vertical-timeline-element-date {
+    color: hsl(var(--muted-foreground)) !important;
+    opacity: 1 !important;
+  }
 }
