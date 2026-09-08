@@ -70,6 +70,14 @@ for (const route of ROUTES) {
   console.log(`prerendered ${route.file}  (${route.path})`);
 }
 
+// 404 page — rendered from a URL that triggers the client's catch-all route,
+// written to 404.html so Vercel serves it (with a 404 status) for missing paths.
+{
+  const doc = assemble(shell, "/__unknown-route-404__");
+  writeFileSync(join(dist, "404.html"), doc);
+  console.log("prerendered 404.html  (catch-all)");
+}
+
 // sitemap.xml
 const urlset = ROUTES.map((r) => {
   const loc = SITE_URL + (r.path === "/" ? "/" : r.path);

@@ -18,14 +18,34 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(form.current);
-    const name = data.get("name") || "";
-    const email = data.get("email") || "";
-    const message = data.get("message") || "";
 
-    if (!name.trim() || !message.trim() || !email.trim()) {
+    // Honeypot: real users never see this field, so any value = a bot. Drop
+    // it silently (no error) so scrapers think the submit worked.
+    if (data.get("_gotcha")) return;
+
+    const name = (data.get("name") || "").trim();
+    const email = (data.get("email") || "").trim();
+    const message = (data.get("message") || "").trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name || !message) {
       toast({
         title: "You forgot to write something.",
-        description: "Please fill out your name, email and message.",
+        description: "Please fill out your name and message.",
+      });
+      return;
+    }
+    if (!email || !emailOk) {
+      toast({
+        title: "That email doesn't look right.",
+        description: "Please double-check your email address.",
+      });
+      return;
+    }
+    if (message.length > 5000) {
+      toast({
+        title: "Message is a little long.",
+        description: "Please keep your message under 5,000 characters.",
       });
       return;
     }
@@ -150,8 +170,17 @@ const Contact = () => {
             <form
               ref={form}
               onSubmit={handleSubmit}
+              noValidate
               className="glass space-y-5 p-6 sm:p-8"
             >
+              {/* Honeypot — hidden from humans, attracts bots. */}
+              <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                <label>
+                  Leave this field empty
+                  <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+                </label>
+              </div>
+
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="flex flex-col gap-2">
                   <span className="font-hud text-xs uppercase tracking-widest text-foreground">

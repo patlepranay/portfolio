@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-L43NV8WHSY"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-L43NV8WHSY");
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
@@ -20,7 +8,12 @@
       content="Pranay Patle — Full-stack software engineer building scalable web applications, real-time products and cloud systems."
     />
     <title>Pranay Patle · Full-Stack Engineer</title>
-    <link rel="icon" type="image/x-icon" href="./src/assets/logo.png" />
+
+    <!-- Favicon + touch icon (served from /public at the origin root) -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="color-scheme" content="dark light" />
     <!-- Apply theme class before first paint to avoid a flash of the wrong scheme -->
     <script>
       (function () {
