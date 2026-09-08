@@ -1,28 +1,29 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useDeck } from "./deck-context";
 
 /* ------------------------------------------------------------------ */
-/*  Full-screen page deck.                                             */
-/*                                                                     */
-/*  Each section is a full-viewport page. Navigation powers the current */
-/*  page down (letters switch off one by one), swaps the page, then     */
-/*  powers the new page up. (Directional sliding was intentionally       */
-/*  dropped in favour of the light-switch effect.)                       */
-/*                                                                     */
-/*  When a page holds more content than one viewport, ↑/↓ arrows reveal  */
-/*  the rest of that page; at the page's end, wheel/arrows step to the   */
-/*  neighbouring section.                                               */
+/*  Full-screen page shell (one route per page).                        */
+/*                                                                      */
+/*  Each route renders a single full-viewport page. Navigating powers    */
+/*  the current page down (letters switch off one by one), swaps the      */
+/*  route's <Outlet/>, then powers the new page up. (Directional sliding  */
+/*  was intentionally dropped in favour of the light-switch effect.)      */
+/*                                                                      */
+/*  When a page holds more content than one viewport, ↑/↓ arrows reveal   */
+/*  the rest of that page; at the page's end, wheel/arrows step to the    */
+/*  neighbouring route.                                                  */
 /* ------------------------------------------------------------------ */
 
 const PAGE_STEP = 0.92; // fraction of the frame scrolled per arrow/wheel press
 
-export const Deck = ({ pages }) => {
-  const { index, power, goNext, goPrev, total } = useDeck();
+export const Deck = () => {
+  const { power, goNext, goPrev } = useDeck();
+  const location = useLocation();
   const frameRef = useRef(null);
   const [canDown, setCanDown] = useState(false);
   const [canUp, setCanUp] = useState(false);
-  const safeIndex = Math.max(0, Math.min(index, total - 1));
 
   const measure = useCallback(() => {
     const el = frameRef.current;
@@ -31,7 +32,7 @@ export const Deck = ({ pages }) => {
     setCanUp(el.scrollTop > 4);
   }, []);
 
-  // Re-measure when the page changes or the frame resizes/scrolls.
+  // Re-measure when the route's content changes or the frame resizes/scrolls.
   useEffect(() => {
     const el = frameRef.current;
     if (!el) return;
@@ -44,7 +45,7 @@ export const Deck = ({ pages }) => {
       el.removeEventListener("scroll", measure);
       clearTimeout(t);
     };
-  }, [measure, index]);
+  }, [measure, location.pathname]);
 
   const step = useCallback(
     (dir) => {
@@ -61,7 +62,9 @@ export const Deck = ({ pages }) => {
     [canDown, canUp, goNext, goPrev]
   );
 
-  // Wheel = reveal this page's remaining content, or step sections at edges.
+  // Wheel only reveals this page's remaining content — it never steps routes.
+  // Switching sections is reserved for explicit controls (navbar / the on-page
+  // chevrons when a section overflows its viewport).
   useEffect(() => {
     const el = frameRef.current;
     if (!el) return;
@@ -70,18 +73,20 @@ export const Deck = ({ pages }) => {
       const down = frame.scrollHeight - frame.scrollTop - frame.clientHeight > 4;
       const up = frame.scrollTop > 4;
       if (e.deltaY > 0) {
-        e.preventDefault();
-        if (down) frame.scrollBy({ top: frame.clientHeight * PAGE_STEP, behavior: "smooth" });
-        else goNext();
+        if (down) {
+          e.preventDefault();
+          frame.scrollBy({ top: frame.clientHeight * PAGE_STEP, behavior: "smooth" });
+        }
       } else if (e.deltaY < 0) {
-        e.preventDefault();
-        if (up) frame.scrollBy({ top: -frame.clientHeight * PAGE_STEP, behavior: "smooth" });
-        else goPrev();
+        if (up) {
+          e.preventDefault();
+          frame.scrollBy({ top: -frame.clientHeight * PAGE_STEP, behavior: "smooth" });
+        }
       }
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
-  }, [index, goNext, goPrev]);
+  }, [location.pathname]);
 
   return (
     <div className={`deck-page w-full ${power ? "" : "power-off"}`}>
@@ -90,7 +95,7 @@ export const Deck = ({ pages }) => {
         className="deck-frame fx-stage no-scrollbar"
         style={{ touchAction: "pan-x" }}
       >
-        {pages[safeIndex]}
+        <Outlet />
       </div>
 
       {/* Reveal remaining content within a full section. */}

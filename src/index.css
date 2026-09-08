@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -79,7 +79,7 @@
 
 html,
 body {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Anta", sans-serif;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   -webkit-font-smoothing: antialiased;
@@ -95,9 +95,11 @@ body {
   height: 100%;
   overscroll-behavior: none;
 }
+
 body {
   overflow: hidden;
 }
+
 #root {
   height: 100%;
 }
@@ -110,6 +112,7 @@ body {
   overflow: hidden;
   position: relative;
 }
+
 .deck-frame {
   height: 100%;
   overflow-y: auto;
@@ -129,13 +132,16 @@ body {
   will-change: opacity;
   transition: opacity 0.12s ease var(--d, 0ms);
 }
+
 .fx-stage {
   opacity: 1;
   transition: opacity 0.22s ease 0s;
 }
+
 .power-off .fx-char {
   opacity: 0;
 }
+
 .power-off .fx-stage {
   opacity: 0;
   transition-duration: 0.3s;
@@ -146,8 +152,8 @@ body {
 .font-display {
   font-family: "Syne", sans-serif;
 }
+
 .font-hud {
-  font-family: "Share Tech Mono", monospace;
   letter-spacing: 0.08em;
 }
 
@@ -161,24 +167,88 @@ body {
     -webkit-backdrop-filter: blur(16px) saturate(150%);
     border: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 55%, transparent);
   }
+
   .glass-strong {
     background: color-mix(in srgb, rgb(var(--glass-tint)) 85%, transparent);
     backdrop-filter: blur(22px) saturate(160%);
     -webkit-backdrop-filter: blur(22px) saturate(160%);
     border: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 70%, transparent);
   }
+
   .glass-nav {
     background: color-mix(in srgb, rgb(var(--glass-tint)) 55%, transparent);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     border-bottom: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 45%, transparent);
   }
+
+  /* Richer glass for the experience card: stronger blur/saturation, a soft
+     vertical sheen (lighter toward the top edge) and a subtle inset + drop
+     shadow so the pane reads as a slab of frosted material. */
+  .glass-exp {
+
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 80%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in srgb, rgb(var(--glass-halo)) 10%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, rgb(var(--glass-tint)) 6%, transparent),
+      0 30px 70px -32px color-mix(in srgb, rgb(var(--glass-halo)) 55%, transparent);
+  }
+
+  /* Slim, unobtrusive scrollbar for the experience card's detail list. */
+  .exp-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, rgb(var(--glass-border)) 90%, transparent) transparent;
+  }
+
+  .exp-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .exp-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .exp-scroll::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, rgb(var(--glass-border)) 90%, transparent);
+    border-radius: 999px;
+  }
+
   .no-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Per-page ambient hue.                                              */
+  /*  Each non-hero page stays transparent so the global star/dust field  */
+  /*  shows through (exactly like Hero). The page only sets `--pg-hue`,   */
+  /*  which the faint blurred glow blobs use to give each route a subtle,  */
+  /*  low-alpha colour wash without covering the background.              */
+  /* ------------------------------------------------------------------ */
+  .pg-about {
+    --pg-hue: 225 50% 60%;
+  }
+
+  .pg-exp {
+    --pg-hue: 265 50% 60%;
+  }
+
+  .pg-tech {
+    --pg-hue: 195 50% 55%;
+  }
+
+  .pg-works {
+    --pg-hue: 40 70% 55%;
+  }
+
+  .pg-contact {
+    --pg-hue: 165 55% 45%;
   }
 }
 
@@ -188,13 +258,16 @@ body {
 ::-webkit-scrollbar {
   width: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
 }
+
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--border));
   border-radius: 999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground));
 }
@@ -211,35 +284,46 @@ canvas {
 }
 
 /* ------------------------------------------------------------------ */
-/*  react-vertical-timeline-component overrides (theme-aware)          */
+/*  Experience card directional slide-in.                               */
+/*  The active card is keyed + remounted on each index change, so this  */
+/*  entry animation makes "next / previous" read as a fresh screen.     */
 /* ------------------------------------------------------------------ */
-.vertical-timeline-element-content {
-  box-shadow: none !important;
-}
-.vertical-timeline-element-date {
-  color: hsl(var(--muted-foreground)) !important;
-  opacity: 1 !important;
-}
-.vertical-timeline::before {
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    hsl(var(--border)) 10%,
-    hsl(var(--border)) 90%,
-    transparent
-  ) !important;
-}
-@media only screen and (min-width: 1170px) {
-  .vertical-timeline.vertical-timeline--two-columns .vertical-timeline-element-icon {
-    width: 46px;
-    height: 46px;
-    left: 50%;
-    margin-left: -23px;
+@keyframes exp-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
   }
-  .vertical-timeline.vertical-timeline--two-columns
-    .vertical-timeline-element-content
-    .vertical-timeline-element-date {
-    color: hsl(var(--muted-foreground)) !important;
-    opacity: 1 !important;
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exp-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-exp-in-right {
+  animation: exp-in-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-exp-in-left {
+  animation: exp-in-left 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-exp-in-right,
+  .animate-exp-in-left {
+    animation: none;
   }
 }

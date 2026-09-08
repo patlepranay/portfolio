@@ -1,7 +1,4 @@
 {
-    "git": {
-      "deploymentEnabled": {
-        "main": true
-      }
-    }
-  }
+  "cleanUrls": true,
+  "trailingSlash": false
+}

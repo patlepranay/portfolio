@@ -1,13 +1,14 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { ExternalLink, Loader2, Mail, Phone } from "lucide-react";
+import { ExternalLink, Heart, Loader2, Mail, Phone } from "lucide-react";
 import { Reveal } from "@/components/deck/reveal";
 import { SectionHeading } from "@/components/layout/SectionHeading";
+import { Seo } from "@/components/seo/Seo";
 import { useToast } from "@/components/ui/use-toast";
-import { contact, headings } from "@/data/constants";
+import { contact, headings, footer, lastUpdated } from "@/data/constants";
 
 const inputCls =
-  "w-full rounded-xl border border-border bg-background/50 px-4 py-3.5 text-base text-foreground placeholder:text-muted-foreground outline-none backdrop-blur-sm transition-colors focus:border-foreground focus:ring-1 focus:ring-foreground";
+  "w-full border border-border bg-background/50 px-4 py-3.5 text-base text-foreground placeholder:text-muted-foreground outline-none backdrop-blur-sm transition-colors focus:border-foreground focus:ring-1 focus:ring-foreground";
 
 const Contact = () => {
   const form = useRef(null);
@@ -65,8 +66,14 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 sm:py-28">
-      <div className="pointer-events-none absolute right-0 top-20 h-96 w-96 rounded-full bg-primary/10 blur-[130px]" />
+    <section id="contact" className="pg-contact relative overflow-hidden py-24 font-body sm:py-28">
+      <Seo id="contact" />
+      {/* ambient hue glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 top-24 h-[44vh] w-[40vw] rounded-full opacity-70 blur-[130px]"
+        style={{ background: "radial-gradient(circle, hsl(var(--pg-hue) / 0.2), transparent 70%)" }}
+      />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading index={headings.contact.index} eyebrow={headings.contact.eyebrow} title={headings.contact.title} />
@@ -74,25 +81,25 @@ const Contact = () => {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
           {/* Info / socials */}
           <Reveal index={1} className="space-y-6">
-            <p className="max-w-md text-lg leading-relaxed text-muted-foreground">
+            <p className="max-w-md text-lg font-body leading-relaxed text-muted-foreground">
               {contact.intro}
             </p>
 
             <div className="space-y-3">
               <a
                 href={`mailto:${contact.email}`}
-                className="glass flex items-center gap-3 rounded-2xl p-4 transition-colors hover:border-primary/50"
+                className="glass flex items-center gap-3 p-4 transition-colors hover:border-primary/50"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/15 text-primary">
+                <span className="grid h-10 w-10 place-items-center bg-primary/15 text-primary">
                   <Mail className="h-4 w-4" />
                 </span>
                 <span className="text-base text-foreground">{contact.email}</span>
               </a>
               <a
                 href={`tel:${contact.phone.replace(/[\s-]/g, "")}`}
-                className="glass flex items-center gap-3 rounded-2xl p-4 transition-colors hover:border-primary/50"
+                className="glass flex items-center gap-3 p-4 transition-colors hover:border-primary/50"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/15 text-primary">
+                <span className="grid h-10 w-10 place-items-center bg-primary/15 text-primary">
                   <Phone className="h-4 w-4" />
                 </span>
                 <span className="text-base text-foreground">{contact.phone}</span>
@@ -106,12 +113,35 @@ const Contact = () => {
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-lg border border-border bg-background/60 px-4 py-2.5 text-sm font-semibold text-foreground backdrop-blur-sm transition-colors hover:border-primary/50 hover:bg-accent"
+                  className="flex items-center border border-foreground/40 px-6 py-3 font-hud text-sm uppercase tracking-widest text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
                 >
                   {s.label}
-                  <ExternalLink className="h-3.5 w-3.5 text-muted-foreground transition-colors group-hover:text-primary" />
+                  <ExternalLink className="h-3.5 w-3.5 ml-4 text-muted-foreground transition-colors group-hover:text-primary" />
                 </a>
               ))}
+            </div>
+
+            {/* Sign-off meta, folded into the info column so it never reaches the bottom pill */}
+            <div className="mt-8 border-t border-border/40 pt-5">
+              <p className="flex flex-wrap items-center gap-1.5 font-hud text-[11px] uppercase tracking-widest text-muted-foreground">
+                <span className="text-foreground">{footer.marker}</span>
+                © {new Date().getFullYear()} · {footer.builtWith}{" "}
+                <Heart className="inline h-3 w-3 text-foreground" fill="currentColor" /> {footer.by}{" "}
+                <span className="text-foreground">{footer.name}</span>
+              </p>
+              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-hud text-[11px] uppercase tracking-widest text-muted-foreground">
+                <a
+                  href={footer.sourceHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                >
+                  {footer.source}
+                </a>
+                <span>
+                  {footer.updatedLabel} · {lastUpdated}
+                </span>
+              </div>
             </div>
           </Reveal>
 
@@ -120,7 +150,7 @@ const Contact = () => {
             <form
               ref={form}
               onSubmit={handleSubmit}
-              className="glass space-y-5 rounded-3xl p-6 sm:p-8"
+              className="glass space-y-5 p-6 sm:p-8"
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 <label className="flex flex-col gap-2">
@@ -156,7 +186,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center justify-center gap-2 border border-foreground bg-foreground px-7 py-3.5 font-hud text-sm font-bold uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 border border-foreground bg-foreground px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading && <Loader2 className="h-4 w-4 animate-spin" />}
                 {loading ? contact.form.sending : contact.form.submit}

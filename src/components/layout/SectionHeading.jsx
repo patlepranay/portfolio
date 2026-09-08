@@ -2,7 +2,7 @@ import React from "react";
 import { Reveal } from "@/components/deck/reveal";
 
 /**
- * Section heading — big Syne title + Share Tech Mono eyebrow/index.
+ * Section heading — big Syne title + Anta eyebrow/index.
  * Numbers + eyebrow feel like a product-launch / three.js-style HUD.
  *
  * It participates in the page's accelerating cascade via <Reveal>; pass
@@ -18,12 +18,14 @@ export const SectionHeading = ({
   const alignCls =
     align === "center"
       ? "items-center text-center mx-auto"
-      : "items-start text-left";
+      : align === "right"
+        ? "items-end text-right ml-auto"
+        : "items-start text-left";
 
   return (
     <Reveal
       index={revealIndex}
-      className={`flex flex-col ${alignCls} mb-14`}
+      className={`flex flex-col ${alignCls} `}
     >
       <div className="mb-4 flex items-center gap-3 font-hud text-xs uppercase tracking-[0.3em] text-foreground sm:text-sm">
         {index && (
@@ -34,9 +36,18 @@ export const SectionHeading = ({
         <span className="text-muted-foreground">{eyebrow}</span>
         <span className="h-px w-16 bg-border" />
       </div>
-      <h2 className="max-w-3xl font-display text-4xl font-bold leading-[0.95] tracking-tight text-foreground sm:text-6xl md:text-7xl">
-        {title}
-      </h2>
+      {/* Each section page has exactly one heading — it is that page's <h1>. */}
+      <Reveal
+        as="h1"
+        index={1}
+        className="font-display font-extrabold uppercase leading-[0.82] tracking-[-0.02em] text-foreground text-xl sm:text-6xl md:text-7xl lg:text-7xl"
+      >
+        {title.split(" ")[0]}
+        <br />
+        <span className="text-transparent" style={{ WebkitTextStroke: "1px hsl(var(--foreground))" }}>
+          {title.split(" ")[1]}
+        </span>
+      </Reveal>
     </Reveal>
   );
 };

@@ -15,8 +15,9 @@ module.exports = {
     extend: {
       fontFamily: {
         display: ["Syne", "sans-serif"],
-        sans: ["Space Grotesk", "sans-serif"],
+        sans: ["Anta", "sans-serif"],
         hud: ["Share Tech Mono", "monospace"],
+        body: ["Anta", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

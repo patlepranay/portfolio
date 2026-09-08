@@ -107,7 +107,7 @@ const works = {
 
 const workExp = [
   {
-    jobTitle: "Senior Software Engineer : Full Stack Developer",
+    jobTitle: "Senior Software Engineer",
     companyName: "Azuga Telematics, Bangalore-Remote",
     date: `Nov 24 to Present`,
     details: [
@@ -153,23 +153,59 @@ const allTech = Object.values(techStack).flat();
 
 const resumeUrl = "/Pranay_Patle_Resume.pdf";
 
-/* Section ordering doubles as page order — nav + routing follow this. */
+/* Public origin. Override with VITE_SITE_URL at build/deploy so the
+   sitemap + canonical/OG URLs point at the real domain. */
+const SITE_URL = (import.meta.env?.VITE_SITE_URL || "https://pranaypatle.dev").replace(/\/$/, "");
+
+/* Absolute URL for social cards. logo.png is copied to public/ for a stable
+   absolute URL. */
+const ogImage = `${SITE_URL}/logo.png`;
+
+/* Section ordering doubles as page order — nav, routing + sitemap follow this. */
 const navItems = [
-  { label: "Home", id: "home" },
-  { label: "About", id: "about" },
-  { label: "Experience", id: "experience" },
-  { label: "Tech", id: "tech" },
-  { label: "Work", id: "projects" },
-  { label: "Contact", id: "contact" },
+  { label: "Home", id: "home", path: "/" },
+  { label: "About", id: "about", path: "/about" },
+  { label: "Experience", id: "experience", path: "/experience" },
+  { label: "Tech", id: "tech", path: "/tech" },
+  { label: "Work", id: "projects", path: "/work" },
+  { label: "Contact", id: "contact", path: "/contact" },
 ];
+
+/* Per-route SEO — title/description/canonical-path used by <Seo> + sitemap. */
+const seo = {
+  home: {
+    title: "Pranay Patle · Full-Stack Software Engineer",
+    desc: "Pranay Patle is a full-stack software engineer building scalable web applications, real-time products and cloud systems.",
+  },
+  about: {
+    title: "About · Pranay Patle — Full-Stack Engineer",
+    desc: "5+ years designing and building web apps, hybrid mobile apps and distributed systems. B.Tech CSE, GCOE Amravati.",
+  },
+  experience: {
+    title: "Experience · Pranay Patle — Full-Stack Engineer",
+    desc: "Senior Software Engineer at Azuga Telematics and System Engineer at Tata Consultancy Services. Full-stack engineering experience.",
+  },
+  tech: {
+    title: "Tech Stack · Pranay Patle",
+    desc: "Languages, frameworks and tools I use daily — JavaScript, React, NextJS, Node, AWS, GCP and more.",
+  },
+  projects: {
+    title: "Work · Pranay Patle — Projects",
+    desc: "Selected projects and builds by Pranay Patle — CLI tools, realtime apps, dashboards and full-stack products.",
+  },
+  contact: {
+    title: "Contact · Pranay Patle",
+    desc: "Have a role, an idea, or a tricky system-design problem? Reach out — pranayhpatle@gmail.com.",
+  },
+};
 
 /* Section headings — eyebrow/index/title per section. */
 const headings = {
-  about: { index: "01", eyebrow: "Who I am", title: "About me" },
-  experience: { index: "02", eyebrow: "My journey", title: "Experience" },
-  tech: { index: "03", eyebrow: "Toolbox", title: "Tech & tools" },
-  works: { index: "04", eyebrow: "Selected builds", title: "Work" },
-  contact: { index: "05", eyebrow: "Get in touch", title: "Let's build" },
+  about: { index: "01", eyebrow: "Behind the code", title: "About Me" },
+  experience: { index: "02", eyebrow: "Battle tested", title: "Career Log" },
+  tech: { index: "03", eyebrow: "Weapons of choice", title: "Tech Arsenal" },
+  works: { index: "04", eyebrow: "Things shipped", title: "Build Log" },
+  contact: { index: "05", eyebrow: "Your move", title: "Let's Connect" },
 };
 
 /* Hero — giant name, kicker line, HUD stat strip, CTAs, bottom bar. */
@@ -178,25 +214,25 @@ const hero = {
     prefix: "▸",
     role: "full-stack software engineer",
     divider: "//",
-    extras: "web · cloud · realtime",
+    extras: "web · cloud · ai",
   },
   firstName: "Pranay",
   lastName: "Patle",
   hud: [
-    { value: "5+ yrs", text: " shipping" },
+    { value: "5+ yrs", text: " shipping products" },
     { sep: true },
-    { text: "scalable web" },
+    { text: "building things that scale" },
     { sep: true, hide: true },
-    { text: "hybrid apps", hide: true },
+    { text: "performance optimization", hide: true },
     { sep: true, hide: true },
-    { text: "cloud · aws/gcp", hide: true },
+    { text: "event-driven systems ", hide: true },
   ],
-  scrollText: "scroll — build · ship · scale",
+  scrollText: "build - ship - scale - repeat",
   metaText: "2D · 2026",
   cta: [
-    { kind: "primary", label: "view work", href: "#projects" },
-    { kind: "outline", label: "contact me", href: "#contact" },
-    { kind: "link", label: "résumé ↗", href: resumeUrl, external: true },
+    { kind: "primary", label: "view work", href: "/work" },
+    { kind: "outline", label: "contact me", href: "/contact" },
+    { kind: "link", label: "resume ↗", href: resumeUrl, external: true },
   ],
 };
 
@@ -266,7 +302,10 @@ export {
   techStack,
   allTech,
   resumeUrl,
+  SITE_URL,
+  ogImage,
   navItems,
+  seo,
   headings,
   hero,
   aboutFacts,

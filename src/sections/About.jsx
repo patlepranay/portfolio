@@ -2,6 +2,7 @@ import React from "react";
 import { GraduationCap, MapPin, Cog } from "lucide-react";
 import { Reveal } from "@/components/deck/reveal";
 import { SectionHeading } from "@/components/layout/SectionHeading";
+import { Seo } from "@/components/seo/Seo";
 import { about, aboutFacts, focusAreas, headings } from "@/data/constants";
 
 const FACT_ICONS = {
@@ -12,16 +13,26 @@ const FACT_ICONS = {
 
 const About = () => {
   return (
-    <section id="about" className="relative overflow-hidden py-24 sm:py-28">
+    <section
+      id="about"
+      className="pg-about relative flex h-dvh items-center overflow-hidden py-24 font-body sm:py-28"
+    >
+      {/* ambient hue glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-44 -top-40 h-[46vh] w-[40vw] rounded-full opacity-70 blur-[130px]"
+        style={{ background: "radial-gradient(circle, hsl(var(--pg-hue) / 0.2), transparent 70%)" }}
+      />
+      <Seo id="about" />
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading index={headings.about.index} eyebrow={headings.about.eyebrow} title={headings.about.title} />
 
         <div className="grid items-start gap-10 lg:grid-cols-[1.6fr_1fr]">
           <Reveal
             index={1}
-            className="space-y-6 text-lg leading-relaxed text-muted-foreground sm:text-xl"
+            className="space-y-6 text-lg font-body leading-relaxed text-foreground "
           >
-            <p className="text-foreground/90 first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-6xl first-letter:leading-[0.8] first-letter:text-primary">
+            <p className=" first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-6xl first-letter:leading-[0.8] first-letter:text-primary">
               {about.overview1.trim()}
             </p>
             <p>{about.overview2.trim()}</p>
@@ -35,9 +46,9 @@ const About = () => {
                 return (
                   <div
                     key={f.label}
-                    className="glass flex items-center gap-4 rounded-2xl p-5"
+                    className="glass-exp flex items-center gap-4 p-5"
                   >
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center bg-primary/15 text-primary">
                       <Icon className="h-5 w-5" />
                     </span>
                     <div>
@@ -51,15 +62,15 @@ const About = () => {
               })}
             </Reveal>
 
-            <Reveal index={3} className="glass rounded-2xl p-5">
-              <p className="mb-3 text-xs uppercase tracking-wider text-muted-foreground">
+            <Reveal index={3} className="glass-exp p-5">
+              <p className="mb-3 font-hud text-xs uppercase tracking-widest text-muted-foreground">
                 Focus areas
               </p>
               <div className="flex flex-wrap gap-2">
                 {focusAreas.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-border bg-background/60 px-3 py-1 text-xs font-semibold text-foreground"
+                    className="border border-border bg-background/60 px-3 py-1 text-xs text-foreground"
                   >
                     {t}
                   </span>

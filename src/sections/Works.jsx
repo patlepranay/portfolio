@@ -1,9 +1,10 @@
-import React from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import React, { useState } from "react";
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Reveal } from "@/components/deck/reveal";
 import { FxSplit } from "@/components/deck/fx";
 import { SectionHeading } from "@/components/layout/SectionHeading";
+import { Seo } from "@/components/seo/Seo";
 import { projects, works, headings } from "@/data/constants";
 
 /** Per-card smooth 3D tilt toward the cursor (no re-render churn). */
@@ -43,8 +44,8 @@ const ProjectCard = ({ item }) => {
   const links = item.source_code_link ?? [];
 
   return (
-    <TiltCard className="group relative flex h-full">
-      <div className="glass flex w-full flex-col overflow-hidden rounded-2xl transition-shadow duration-300 hover:shadow-2xl hover:shadow-primary/10">
+    <TiltCard className="group font-body relative flex h-full">
+      <div className="glass-exp font-body flex w-full flex-col overflow-hidden transition-shadow duration-300 hover:shadow-2xl hover:shadow-primary/10">
         {/* image */}
         <div className="relative h-44 overflow-hidden border-b border-border/60 bg-muted/30">
           <img
@@ -60,7 +61,7 @@ const ProjectCard = ({ item }) => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Source code"
-                className="grid h-8 w-8 place-items-center rounded-lg glass-strong text-foreground transition-colors hover:text-primary"
+                className="grid h-8 w-8 place-items-center glass-strong text-foreground transition-colors hover:text-primary"
               >
                 <Github className="h-4 w-4" />
               </a>
@@ -71,7 +72,7 @@ const ProjectCard = ({ item }) => {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Live demo"
-                className="grid h-8 w-8 place-items-center rounded-lg glass-strong text-foreground transition-colors hover:text-primary"
+                className="grid h-8 w-8 place-items-center glass-strong text-foreground transition-colors hover:text-primary"
               >
                 <ExternalLink className="h-4 w-4" />
               </a>
@@ -82,7 +83,7 @@ const ProjectCard = ({ item }) => {
         {/* body */}
         <div className="flex flex-1 flex-col p-5" style={{ transform: "translateZ(20px)" }}>
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-display text-xl font-bold text-foreground sm:text-2xl">
+            <h3 className="font-body text-xl font-bold text-foreground sm:text-2xl">
               {item.title}
             </h3>
             {hasTwoRepos && (
@@ -114,29 +115,120 @@ const ProjectCard = ({ item }) => {
     </TiltCard>
   );
 };
-
 const Works = () => {
-  return (
-    <section id="projects" className="relative overflow-hidden py-24 sm:py-28">
-      <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading index={headings.works.index} eyebrow={headings.works.eyebrow} title={headings.works.title} />
-        <Reveal
-          index={1}
-          className="mb-14 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg"
-        >
-          {works.title.trim()}
-        </Reveal>
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const selectedProject = projects[selectedIndex];
 
-        <div className="grid grid-cols-1 gap-8 pb-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((item, index) => (
-            <Reveal key={item.title} index={index + 2}>
-              <ProjectCard item={item} />
+  return (
+    <section
+      id="projects"
+      className="pg-works relative overflow-hidden py-24 sm:py-28"
+    >
+      <Seo id="projects" />
+      {/* ambient hue glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-40 top-24 h-[46vh] w-[42vw] rounded-full opacity-70 blur-[130px]"
+        style={{ background: "radial-gradient(circle, hsl(var(--pg-hue) / 0.2), transparent 70%)" }}
+      />
+
+      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+        {/* Main Content */}
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Left — Heading & Description */}
+          <div className="max-w-xl">
+            <SectionHeading
+              index={headings.works.index}
+              eyebrow={headings.works.eyebrow}
+              title={headings.works.title}
+            />
+
+            <Reveal
+              index={1}
+              className="mt-6 max-w-lg text-base font-body leading-relaxed text-muted-foreground sm:text-lg"
+            >
+              {works.title.trim()}
             </Reveal>
-          ))}
+          </div>
+
+          {/* Right — Selected Project */}
+          <div className="relative w-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedProject.title}
+                initial={{ x: 60, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -60, opacity: 0 }}
+                transition={{
+                  duration: 0.45,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <ProjectCard item={selectedProject} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Bottom — Project Gallery */}
+        <div className="mt-10 border-t border-border/50 pt-6">
+          <div className="flex gap-3 overflow-x-auto px-1 py-2 sm:justify-center">
+            {projects.map((project, index) => {
+              const isSelected = selectedIndex === index;
+
+              return (
+                <button
+                  key={project.title}
+                  type="button"
+                  onClick={() => setSelectedIndex(index)}
+                  aria-label={`View ${project.title}`}
+                  aria-pressed={isSelected}
+                  className="group relative shrink-0"
+                >
+                  <div
+                    className={`
+                      relative h-16 w-24 overflow-hidden
+                      border transition-all duration-300
+                      sm:h-20 sm:w-32
+                      ${isSelected
+                        ? "scale-105 border-foreground opacity-100"
+                        : "border-border/50 opacity-40 hover:scale-105 hover:opacity-90"
+                      }
+                    `}
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+
+                    {!isSelected && (
+                      <div className="absolute inset-0 bg-background/25 transition-opacity group-hover:opacity-0" />
+                    )}
+
+                    <span className="absolute bottom-1.5 left-2 font-hud text-[10px] font-medium text-white drop-shadow-md">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    {isSelected && (
+                      <motion.div
+                        layoutId="selected-project"
+                        className="absolute inset-0 border-2 border-foreground"
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
   );
 };
-
 export default Works;
