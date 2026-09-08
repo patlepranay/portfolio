@@ -159,6 +159,18 @@ body {
   transition-delay: 0.5s;
 }
 
+/* Boot: JS present (see index.html) but the deck hasn't mounted yet. Hold the
+   page content invisible so a hard reload never flashes pre-baked text; removing
+   the class sweeps the characters on via their per-char --d delays. */
+html.boot .fx-stage {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+html.boot .fx-char {
+  opacity: 0;
+}
+
 /* Font roles: Syne = big display · Space Grotesk = body · Share Tech Mono = HUD */
 .font-display {
   font-family: "Syne", sans-serif;

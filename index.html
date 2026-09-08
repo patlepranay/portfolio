@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      // Runs before first paint. Marks JS-capable browsers so the deck can hold
+      // content hidden until it mounts and sweeps on — no flash of pre-baked
+      // text on a hard reload. No-JS readers keep the fully-visible SSR markup.
+      document.documentElement.classList.add("boot");
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta

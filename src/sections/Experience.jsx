@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Seo } from "@/components/seo/Seo";
 import { workExp, headings } from "@/data/constants";
+import { Reveal } from "@/components/deck/reveal";
 
 /* ------------------------------------------------------------------ */
 /*  Career Log — a single "current" experience card at a time.          */
@@ -86,8 +87,7 @@ const Experience = () => {
           eyebrow={headings.experience.eyebrow}
           title={headings.experience.title}
         />
-
-        <div className="relative  flex min-h-0 flex-1 flex-col justify-center sm:mt-8">
+        <Reveal className="relative flex min-h-0 flex-1 flex-col justify-center sm:mt-8">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -inset-x-10 -top-8 bottom-0"
@@ -95,7 +95,7 @@ const Experience = () => {
           />
 
           <div
-            key={`${idx}-${dir}`}
+            key={`${idx}-${dir}-${active.date}`}
             className={`glass-exp relative flex min-h-0 max-h-full flex-col overflow-hidden py-6 pl-6 pr-4 sm:py-8 sm:pl-10 sm:pr-6 ${dir > 0 ? "animate-exp-in-right" : "animate-exp-in-left"
               }`}
           >
@@ -207,7 +207,8 @@ const Experience = () => {
               </button>
             </>
           )}
-        </div>
+        </Reveal>
+
       </div>
     </section>
   );

@@ -215,7 +215,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className=" items-center justify-center  border border-foreground bg-foreground px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center  border border-foreground bg-foreground px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading && <Loader2 className="h-4 w-4 animate-spin" />}
                 {loading ? contact.form.sending : contact.form.submit}

@@ -52,28 +52,27 @@ export const PowerProvider = ({ children }) => {
   const pathRef = useRef(location.pathname);
   pathRef.current = location.pathname;
   const busyRef = useRef(false);
-  const introRef = useRef(false);
   const timerRef = useRef(null);
   const turnOnRef = useRef(null);
 
   const order = useMemo(() => navItems.map((n) => n.path), []);
   const total = order.length;
 
-  // "Lights on" intro after the first client paint. Runs in an effect (never
-  // during render), so it can't fight the SSR-baked visible text — it just
-  // blinks the page once shortly after hydration.
+  // Intro reveal after the first client paint. The `boot` class (added by an
+  // inline script in index.html) has held the page invisible until now; drop it
+  // once mounted so every character sweeps on together. Nothing was ever shown
+  // to flash beforehand. (No-JS readers never got `boot`, so they see the SSR
+  // text directly.)
+  //
+  // Deliberately no early-return guard: in dev React StrictMode runs effects
+  // twice (mount → cleanup → mount). A guard + cleanup would cancel the first
+  // reveal and bail on the second, leaving `boot` stuck and the page blank.
+  // Removing the class is idempotent, so running it twice is harmless.
   useEffect(() => {
-    if (introRef.current) return;
-    introRef.current = true;
-    let on;
     const id = setTimeout(() => {
-      setPower(false);
-      on = setTimeout(() => setPower(true), 180);
-    }, 150);
-    return () => {
-      clearTimeout(id);
-      clearTimeout(on);
-    };
+      document.documentElement.classList.remove("boot");
+    }, 140);
+    return () => clearTimeout(id);
   }, []);
 
   useEffect(
