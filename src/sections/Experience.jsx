@@ -103,9 +103,9 @@ const Experience = () => {
             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/60 to-transparent" />
 
             {/* header row — logo + role tag */}
-            <div className="mt-2 flex items-start justify-between gap-4 pr-2 sm:pr-8">
-              <div className="flex flex-col content-center gap-2">
-                <h3 className="font-hud text-3xl uppercase leading-[0.95] tracking-[1.2px] text-foreground">
+            <div className="mt-2 flex flex-col gap-4 pr-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:pr-8">
+              <div className="flex min-w-0 flex-col gap-2">
+                <h3 className="font-hud text-2xl uppercase leading-[0.95] tracking-[1.2px] text-foreground sm:text-3xl">
                   {company}
                 </h3>
                 <div className="flex flex-col items-start justify-between text-left">
@@ -117,13 +117,13 @@ const Experience = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex flex-col items-end gap-2 text-right">
+              <div className="flex w-full flex-row items-center justify-between gap-3 sm:w-auto sm:flex-col sm:items-end sm:justify-start sm:gap-2 sm:text-right">
                 <img
                   src={active.icon}
                   alt={company}
-                  className="h-14 object-cover p-2 dark:bg-primary"
+                  className="h-12 object-cover p-1.5 dark:bg-primary sm:h-14 sm:p-2"
                 />
-                <p className="mt-2 flex items-center font-hud text-sm uppercase tracking-widest text-muted-foreground sm:text-base">
+                <p className="mt-0 flex items-center font-hud text-sm uppercase tracking-widest text-muted-foreground sm:mt-2 sm:text-base">
                   {active.date}
                 </p>
               </div>

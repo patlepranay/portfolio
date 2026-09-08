@@ -15,7 +15,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="pg-about relative flex h-dvh items-center overflow-hidden py-24 font-body sm:py-28"
+      className="pg-about relative flex min-h-dvh items-center overflow-hidden py-24 font-body sm:py-28"
     >
       {/* ambient hue glow */}
       <div

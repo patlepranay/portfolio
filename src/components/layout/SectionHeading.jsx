@@ -40,7 +40,7 @@ export const SectionHeading = ({
       <Reveal
         as="h1"
         index={1}
-        className="font-display font-extrabold uppercase leading-[0.82] tracking-[-0.02em] text-foreground text-xl sm:text-6xl md:text-7xl lg:text-7xl"
+        className="font-display font-extrabold uppercase leading-[0.82] tracking-[-0.02em] text-foreground text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
       >
         {title.split(" ")[0]}
         <br />
