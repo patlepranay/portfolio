@@ -1,42 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script>
-      // Runs before first paint. Marks JS-capable browsers so the deck can hold
-      // content hidden until it mounts and sweeps on — no flash of pre-baked
-      // text on a hard reload. No-JS readers keep the fully-visible SSR markup.
-      document.documentElement.classList.add("boot");
-    </script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Pranay Patle — Full-stack software engineer building scalable web applications, real-time products and cloud systems."
-    />
-    <title>Pranay Patle · Full-Stack Engineer</title>
 
-    <!-- Favicon + touch icon (served from /public at the origin root) -->
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
-    <meta name="theme-color" content="#0a0a0f" />
-    <meta name="color-scheme" content="dark light" />
-    <!-- Apply theme class before first paint to avoid a flash of the wrong scheme -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem("portfolio-theme");
-          var dark = stored
-            ? stored === "dark"
-            : window.matchMedia("(prefers-color-scheme: dark)").matches;
-          document.documentElement.classList.toggle("dark", dark);
-        } catch (e) {
-          document.documentElement.classList.add("dark");
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RRWMPZTHLM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-RRWMPZTHLM');
+  </script>
+  <script>
+    // Runs before first paint. Marks JS-capable browsers so the deck can hold
+    // content hidden until it mounts and sweeps on — no flash of pre-baked
+    // text on a hard reload. No-JS readers keep the fully-visible SSR markup.
+    document.documentElement.classList.add("boot");
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Pranay Patle — Full-stack software engineer building scalable web applications, real-time products and cloud systems." />
+  <title>Pranay Patle · Full-Stack Engineer</title>
+
+  <!-- Favicon + touch icon (served from /public at the origin root) -->
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="color-scheme" content="dark light" />
+  <!-- Apply theme class before first paint to avoid a flash of the wrong scheme -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("portfolio-theme");
+        var dark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", dark);
+      } catch (e) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>
