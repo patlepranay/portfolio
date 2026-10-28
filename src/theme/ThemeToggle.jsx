@@ -3,15 +3,14 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./useTheme";
 
 export const ThemeToggle = ({ className = "" }) => {
-  const { theme, toggleTheme } = useTheme();
-  const isDark = theme === "dark";
+  const { isDark, openChooser } = useTheme();
 
   return (
     <button
       type="button"
-      onClick={toggleTheme}
-      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className={`group relative inline-flex h-9 w-9 items-center justify-center overflow-hidden border border-foreground/30 text-foreground transition-colors hover:bg-foreground hover:text-background ${className}`}
+      onClick={openChooser}
+      aria-label="Choose theme"
+      className={`group relative inline-flex h-9 w-9 items-center justify-center overflow-hidden border border-foreground/30 text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground ${className}`}
     >
       <Sun
         className={`h-[18px] w-[18px] text-current transition-all duration-500 ${

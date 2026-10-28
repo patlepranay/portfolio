@@ -54,6 +54,16 @@ const WHITESPACE = /\s/;
  */
 const makeRun = (text, block, run, keyBase) => {
   const chars = Array.from(String(text));
+  if (chars.every((ch) => WHITESPACE.test(ch))) {
+    // A whitespace-only run (e.g. JSX `{a} {b}`) must be an element: flex
+    // containers drop bare whitespace text nodes, which would glue words
+    // together once their runs are split into spans.
+    return React.createElement(
+      "span",
+      { key: `${keyBase}-s`, className: "fx-space" },
+      text
+    );
+  }
   const out = [];
   let pos = 0;
   for (let i = 0; i < chars.length; i++) {
@@ -73,7 +83,14 @@ const makeRun = (text, block, run, keyBase) => {
       pos++;
     }
   }
-  return out.length === 0 ? null : out;
+  if (out.length === 0) return null;
+  // Wrap the run in one inline span so a flex parent treats the whole run as
+  // a single item (with normal inline spacing) instead of discarding spaces.
+  return React.createElement(
+    "span",
+    { key: `${keyBase}-r`, className: "fx-run" },
+    out
+  );
 };
 
 const splitChildren = (children, block, runState) => {

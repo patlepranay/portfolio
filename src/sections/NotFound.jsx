@@ -33,7 +33,7 @@ const NotFound = () => {
         {/* faint cinematic glow */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[50vh] w-[55vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/[0.04] blur-[140px]"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[50vh] w-[55vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.1] blur-[140px]"
         />
 
         <div className="relative z-10 mx-auto max-w-xl px-5 text-center">
@@ -54,7 +54,7 @@ const NotFound = () => {
           <a
             href="/"
             onClick={home}
-            className="group mt-8 inline-flex items-center gap-2 border border-foreground/40 px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+            className="group mt-8 inline-flex items-center gap-2 border border-foreground/40 px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground"
           >
             <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
             Back to home

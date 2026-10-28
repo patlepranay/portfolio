@@ -25,9 +25,9 @@ const LiveClock = ({ className = "" }) => {
 
 const CTA_STYLES = {
   primary:
-    "group items-center  bg-foreground px-6 py-3 text-sm font-bold font-hud uppercase tracking-widest text-background transition-transform hover:-translate-y-0.5",
+    "group items-center  bg-primary px-6 py-3 text-sm font-bold font-hud uppercase tracking-widest text-primary-foreground transition hover:-translate-y-0.5 hover:brightness-110",
   outline:
-    "items-center uppercase border border-foreground/40 px-6 py-3 font-hud text-sm  tracking-widest text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background",
+    "items-center uppercase border border-foreground/40 px-6 py-3 font-hud text-sm  tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground",
   link: "px-2 py-3 font-hud text-sm uppercase tracking-widest text-muted-foreground underline-offset-4 hover:text-foreground hover:underline",
 };
 
@@ -70,7 +70,7 @@ const Hero = () => {
         className="relative flex min-h-full flex-col justify-between overflow-hidden pt-16 pb-10 sm:pt-24"
       >
         {/* faint cinematic glow */}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[60vh] w-[60vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-foreground/[0.03] blur-[140px]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[60vh] w-[60vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.08] blur-[140px]" />
 
         {/* main copy sits above the canvas */}
         <div className="relative z-10 mx-auto w-full max-w-[1400px] px-5 sm:px-10">
@@ -92,7 +92,7 @@ const Hero = () => {
           >
             {firstName}
             <br />
-            <span className="text-transparent" style={{ WebkitTextStroke: "1px hsl(var(--foreground))" }}>
+            <span className="text-transparent" style={{ WebkitTextStroke: "1px hsl(var(--ring))" }}>
               {lastName}
             </span>
           </Reveal>

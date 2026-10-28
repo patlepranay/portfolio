@@ -4,6 +4,7 @@ import { PowerProvider } from "./components/deck/deck-context";
 import { Deck } from "./components/deck/Deck";
 import { Navbar } from "./components/layout/Navbar";
 import { DustField } from "./components/effects/DustField";
+import { ThemeChooser } from "./theme/ThemeChooser";
 import Hero from "./sections/Hero";
 import About from "./sections/About";
 import Experience from "./sections/Experience";
@@ -50,6 +51,7 @@ const App = () => {
           </Routes>
         </div>
         <Navbar />
+        <ThemeChooser />
       </div>
     </PowerProvider>
   );

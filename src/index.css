@@ -5,7 +5,10 @@
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ */
-/*  Semantic theme tokens  (monochrome — white + gray, no accent hue)  */
+/*  Semantic theme tokens.                                             */
+/*  Three palettes: white (monochrome light), dark (monochrome dark),  */
+/*  and brand (midnight black · cobalt blue · acid lime). A random     */
+/*  palette is applied as inline variables on <html> (see ThemeContext) */
 /* ------------------------------------------------------------------ */
 :root {
   color-scheme: light;
@@ -81,6 +84,42 @@
   --card-shadow: 0 1px 0 rgb(255 255 255 / 0.04);
 }
 
+/* Brand palette — midnight black base, cobalt fills, acid lime highlights.
+   Also carries .dark so `dark:` utilities stay on. */
+.brand {
+  color-scheme: dark;
+
+  --background: 233 43% 2%;
+  --foreground: 220 25% 96%;
+
+  --card: 228 30% 7%;
+  --card-foreground: 220 25% 96%;
+
+  --muted: 226 22% 11%;
+  --muted-foreground: 220 15% 65%;
+
+  --border: 222 24% 16%;
+  --input: 222 24% 18%;
+  --ring: 72 100% 57%;
+
+  --primary: 218 81% 44%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 226 22% 14%;
+  --secondary-foreground: 220 25% 96%;
+
+  --accent: 72 100% 57%;
+  --accent-foreground: 233 43% 2%;
+
+  --glass-tint: 12 17 30;
+  --glass-border: 40 56 88;
+  --glass-halo: 60 110 230;
+
+  --card-shadow:
+    0 1px 0 rgb(255 255 255 / 0.04),
+    0 30px 70px -36px rgb(21 88 201 / 0.6);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -142,6 +181,12 @@ body {
   opacity: 1;
   will-change: opacity;
   transition: opacity 0.12s ease var(--d, 0ms);
+}
+
+/* Standalone whitespace between two split runs. Preserved as an element so
+   flex parents don't discard it, and pre keeps its width there. */
+.fx-space {
+  white-space: pre;
 }
 
 .fx-stage {
@@ -256,6 +301,7 @@ html.boot .fx-char {
   /*  which the faint blurred glow blobs use to give each route a subtle,  */
   /*  low-alpha colour wash without covering the background.              */
   /* ------------------------------------------------------------------ */
+  /* Neutral palettes keep their original subtle per-page wash. */
   .pg-about {
     --pg-hue: 225 50% 60%;
   }
@@ -274,6 +320,39 @@ html.boot .fx-char {
 
   .pg-contact {
     --pg-hue: 165 55% 45%;
+  }
+
+  /* Brand palette: only the two brand hues, alternating per page. */
+  .brand .pg-about {
+    --pg-hue: 218 81% 44%;
+  }
+
+  .brand .pg-exp {
+    --pg-hue: 72 100% 57%;
+  }
+
+  .brand .pg-tech {
+    --pg-hue: 218 70% 45%;
+  }
+
+  .brand .pg-works {
+    --pg-hue: 72 90% 50%;
+  }
+
+  .brand .pg-contact {
+    --pg-hue: 218 81% 44%;
+  }
+
+  /* Random palette: derive the wash from its own two accents. */
+  .palette-random .pg-about,
+  .palette-random .pg-tech,
+  .palette-random .pg-contact {
+    --pg-hue: var(--primary);
+  }
+
+  .palette-random .pg-exp,
+  .palette-random .pg-works {
+    --pg-hue: var(--accent);
   }
 }
 
@@ -298,8 +377,8 @@ html.boot .fx-char {
 }
 
 ::selection {
-  background: hsl(var(--foreground));
-  color: hsl(var(--background));
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
 }
 
 /* Keep 3D canvases from hijacking scroll */

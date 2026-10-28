@@ -8,7 +8,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { contact, headings, footer, lastUpdated } from "@/data/constants";
 
 const inputCls =
-  "w-full border border-border bg-background/50 px-4 py-3.5 text-base text-foreground placeholder:text-muted-foreground outline-none backdrop-blur-sm transition-colors focus:border-foreground focus:ring-1 focus:ring-foreground";
+  "w-full border border-border bg-background/50 px-4 py-3.5 text-base text-foreground placeholder:text-muted-foreground outline-none backdrop-blur-sm transition-colors focus:border-ring focus:ring-1 focus:ring-ring";
 
 const Contact = () => {
   const form = useRef(null);
@@ -133,7 +133,7 @@ const Contact = () => {
                   href={s.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center border border-foreground/40 px-6 py-3 font-hud text-sm uppercase tracking-widest text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                  className="flex items-center border border-foreground/40 px-6 py-3 font-hud text-sm uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground"
                 >
                   {s.label}
                   <ExternalLink className="h-3.5 w-3.5 ml-4 text-muted-foreground transition-colors group-hover:text-primary" />
@@ -215,7 +215,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center justify-center  border border-foreground bg-foreground px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center justify-center  border border-primary bg-primary px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-transparent hover:text-primary disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {loading && <Loader2 className="h-4 w-4 animate-spin" />}
                 {loading ? contact.form.sending : contact.form.submit}
