@@ -44,7 +44,7 @@ export const SectionHeading = ({
       >
         {title.split(" ")[0]}
         <br />
-        <span className="text-transparent" style={{ WebkitTextStroke: "1px hsl(var(--foreground))" }}>
+        <span className="text-transparent" style={{ WebkitTextStroke: "1px hsl(var(--ring))" }}>
           {title.split(" ")[1]}
         </span>
       </Reveal>

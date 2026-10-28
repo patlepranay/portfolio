@@ -27,7 +27,7 @@ const Tech = () => {
                 {techStack[g.key].map((t) => (
                   <span
                     key={t}
-                    className="cursor-pointer border border-border bg-background/60 px-3.5 py-1.5 text-sm text-foreground backdrop-blur-sm transition-all hover:border-foreground hover:bg-foreground hover:text-background"
+                    className="cursor-pointer border border-border bg-background/60 px-3.5 py-1.5 text-sm text-foreground backdrop-blur-sm transition-all hover:border-accent hover:bg-accent hover:text-accent-foreground"
                   >
                     {t}
                   </span>

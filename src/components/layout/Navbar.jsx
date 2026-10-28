@@ -26,7 +26,7 @@ export const Navbar = () => {
             e.preventDefault();
             go("/");
           }}
-          className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-foreground/30 font-display text-xs font-extrabold uppercase text-foreground transition-colors hover:bg-foreground hover:text-background sm:h-9 sm:w-9"
+          className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-foreground/30 font-display text-xs font-extrabold uppercase text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground sm:h-9 sm:w-9"
         >
           PP
         </a>
@@ -46,7 +46,7 @@ export const Navbar = () => {
                 }}
                 className={`shrink-0 rounded-full px-2.5 py-1.5 font-hud text-[11px] uppercase tracking-widest transition-colors sm:px-3.5 sm:text-xs ${
                   isActive
-                    ? "bg-foreground text-background"
+                    ? "bg-accent text-accent-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >

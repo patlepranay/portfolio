@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { useTheme } from "@/theme/useTheme";
 
 /**
  * Full-viewport, canvas-2D (no three.js) dust field.
@@ -10,9 +9,6 @@ import { useTheme } from "@/theme/useTheme";
  */
 export const DustField = () => {
   const canvasRef = useRef(null);
-  const { theme } = useTheme();
-  const themeRef = useRef(theme);
-  themeRef.current = theme;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -52,10 +48,18 @@ export const DustField = () => {
     };
     window.addEventListener("pointermove", onMove, { passive: true });
 
+    // Dust follows the active palette's primary colour, re-read slowly.
+    let tint = "0 0% 100%";
+    let tintRead = -1;
     const paint = (now) => {
       ctx.clearRect(0, 0, W, H);
-      const dark = themeRef.current === "dark";
-      const rgb = dark ? "255,255,255" : "34,34,38";
+      if (tintRead < 0 || now - tintRead > 500) {
+        tint =
+          getComputedStyle(document.documentElement)
+            .getPropertyValue("--primary")
+            .trim() || tint;
+        tintRead = now;
+      }
 
       // drifting specks
       for (const s of stars) {
@@ -70,9 +74,9 @@ export const DustField = () => {
           }
         }
         const tw = reduced ? 0.7 : 0.5 + 0.5 * Math.sin(s.tw + now / 900);
-        const a = (0.12 + 0.5 * tw) * (0.35 + s.z);
+        ctx.globalAlpha = (0.12 + 0.5 * tw) * (0.35 + s.z);
+        ctx.fillStyle = `hsl(${tint})`;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(${rgb},${a.toFixed(3)})`;
         ctx.arc(s.x * W, s.y * H, (0.4 + s.z * 1.1) * dpr, 0, Math.PI * 2);
         ctx.fill();
       }
@@ -86,11 +90,13 @@ export const DustField = () => {
           trail.splice(i, 1);
           continue;
         }
+        ctx.globalAlpha = p.life * 0.45;
+        ctx.fillStyle = `hsl(${tint})`;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(${rgb},${(p.life * 0.45).toFixed(3)})`;
         ctx.arc(p.x * dpr, p.y * dpr, p.r * dpr, 0, Math.PI * 2);
         ctx.fill();
       }
+      ctx.globalAlpha = 1;
 
       if (!reduced) raf = requestAnimationFrame(paint);
     };

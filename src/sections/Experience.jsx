@@ -100,7 +100,7 @@ const Experience = () => {
               }`}
           >
             {/* accent hairline across the top edge */}
-            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/60 to-transparent" />
+            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
 
             {/* header row — logo + role tag */}
             <div className="mt-2 flex flex-col gap-4 pr-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4 sm:pr-8">
@@ -121,7 +121,7 @@ const Experience = () => {
                 <img
                   src={active.icon}
                   alt={company}
-                  className="h-12 object-cover p-1.5 dark:bg-primary sm:h-14 sm:p-2"
+                  className="h-12 object-cover p-1.5 dark:bg-white sm:h-14 sm:p-2"
                 />
                 <p className="mt-0 flex items-center font-hud text-sm uppercase tracking-widest text-muted-foreground sm:mt-2 sm:text-base">
                   {active.date}
@@ -138,7 +138,7 @@ const Experience = () => {
               >
                 {active.details.map((point, i) => (
                   <li key={i} className="flex gap-3 text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
-                    <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                    <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                     <span>{point.trim()}</span>
                   </li>
                 ))}
