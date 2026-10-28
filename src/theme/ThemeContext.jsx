@@ -38,7 +38,7 @@ export const THEME_OPTIONS = [
   },
 ];
 
-const DEFAULT_THEME = { id: "brand" };
+const DEFAULT_THEME = { id: "dark" };
 const VALID_IDS = ["white", "dark", "brand", "random"];
 
 /* Vars a random palette writes inline on <html>. */

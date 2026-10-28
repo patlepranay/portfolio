@@ -26,20 +26,20 @@
   <!-- Favicon + touch icon (served from /public at the origin root) -->
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="apple-touch-icon" href="/logo.png" />
-  <meta name="theme-color" content="#030407" />
+  <meta name="theme-color" content="#0a0a0a" />
   <meta name="color-scheme" content="dark light" />
   <!-- Apply the chosen palette's classes before first paint (no wrong-scheme flash). -->
   <script>
     (function () {
       try {
         var p = JSON.parse(localStorage.getItem("portfolio-palette") || "null");
-        var id = p && p.id ? p.id : "brand";
+        var id = p && p.id ? p.id : "dark";
         var dark = id === "dark" || id === "brand" || (id === "random" && p.dark);
         if (id === "brand") document.documentElement.classList.add("brand");
         document.documentElement.classList.toggle("dark", dark);
         document.documentElement.style.colorScheme = dark ? "dark" : "light";
       } catch (e) {
-        document.documentElement.classList.add("brand", "dark");
+        document.documentElement.classList.add("dark");
         document.documentElement.style.colorScheme = "dark";
       }
     })();
