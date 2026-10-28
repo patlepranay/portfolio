@@ -1,17 +1,354 @@
-@import url('https://fonts.googleapis.com/css2?family=Anta&family=League+Spartan:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Space+Grotesk:wght@300..700&family=Syne:wght@400..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/*  Semantic theme tokens  (monochrome — white + gray, no accent hue)  */
+/* ------------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+
+  --radius: 0.85rem;
+
+  /* Slightly-cooler-than-white page so frosted white cards and panes read
+     as distinct surfaces instead of dissolving into the background. */
+  --background: 0 0% 94%;
+  --foreground: 0 0% 10%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+
+  --muted: 0 0% 90%;
+  --muted-foreground: 0 0% 44%;
+
+  --border: 0 0% 76%;
+  --input: 0 0% 76%;
+  --ring: 0 0% 24%;
+
+  --primary: 0 0% 12%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 0 0% 93%;
+  --secondary-foreground: 0 0% 18%;
+
+  --accent: 0 0% 91%;
+  --accent-foreground: 0 0% 14%;
+
+  /* RGB triples, alpha applied via color-mix for glass surfaces */
+  --glass-tint: 255 255 255;
+  --glass-border: 196 196 196;
+  --glass-halo: 20 20 20;
+
+  /* Theme-aware soft elevation: light mode lifts panes with a faint drop
+     shadow; dark mode needs none (surfaces there are defined by edges). */
+  --card-shadow:
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 14px 34px -22px rgb(0 0 0 / 0.3);
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: 0 0% 4%;
+  --foreground: 0 0% 95%;
+
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 95%;
+
+  --muted: 0 0% 13%;
+  --muted-foreground: 0 0% 60%;
+
+  --border: 0 0% 18%;
+  --input: 0 0% 18%;
+  --ring: 0 0% 70%;
+
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 6%;
+
+  --secondary: 0 0% 14%;
+  --secondary-foreground: 0 0% 92%;
+
+  --accent: 0 0% 16%;
+  --accent-foreground: 0 0% 95%;
+
+  --glass-tint: 28 28 31;
+  --glass-border: 52 52 58;
+  --glass-halo: 240 240 240;
+
+  /* No broad drop shadow in dark mode — a faint top highlight keeps the edge. */
+  --card-shadow: 0 1px 0 rgb(255 255 255 / 0.04);
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: "Poppins", sans-serif; */
   scroll-behavior: smooth;
-  color-scheme: dark;
+}
 
+html,
+body {
   font-family: "Anta", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Full-screen "deck" shell — no document scrolling.                  */
+/*  Only the active page (its own internal scroll) ever scrolls.       */
+/* ------------------------------------------------------------------ */
+html,
+body {
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+/* A page occupies the full dynamic viewport. dvh keeps us clear of the
+   mobile browser chrome; vh first as a fallback for older engines. */
+.deck-page {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+.deck-frame {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Letter "power" effect. Each character is a .fx-char span whose       */
+/*  opacity transitions with its own --d delay when the deck toggles     */
+/*  `power-off`. The .fx-stage surface dims slightly later so cards,     */
+/*  icons and inputs don't linger after the letters die.                 */
+/* ------------------------------------------------------------------ */
+.fx-char {
+  opacity: 1;
+  will-change: opacity;
+  transition: opacity 0.12s ease var(--d, 0ms);
+}
+
+.fx-stage {
+  opacity: 1;
+  transition: opacity 0.22s ease 0s;
+}
+
+.power-off .fx-char {
+  opacity: 0;
+}
+
+.power-off .fx-stage {
+  opacity: 0;
+  transition-duration: 0.3s;
+  transition-delay: 0.5s;
+}
+
+/* Boot: JS present (see index.html) but the deck hasn't mounted yet. Hold the
+   page content invisible so a hard reload never flashes pre-baked text; removing
+   the class sweeps the characters on via their per-char --d delays. */
+html.boot .fx-stage {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+html.boot .fx-char {
+  opacity: 0;
+}
+
+/* Font roles: Syne = big display · Space Grotesk = body · Share Tech Mono = HUD */
+.font-display {
+  font-family: "Syne", sans-serif;
+}
+
+.font-hud {
+  letter-spacing: 0.08em;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Glass primitives                                                  */
+/* ------------------------------------------------------------------ */
+@layer utilities {
+  .glass {
+    background: color-mix(in srgb, rgb(var(--glass-tint)) 62%, transparent);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 68%, transparent);
+    box-shadow: var(--card-shadow);
+  }
+
+  .glass-strong {
+    background: color-mix(in srgb, rgb(var(--glass-tint)) 85%, transparent);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 80%, transparent);
+    box-shadow: var(--card-shadow);
+  }
+
+  .glass-nav {
+    background: color-mix(in srgb, rgb(var(--glass-tint)) 55%, transparent);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 45%, transparent);
+  }
+
+  /* Richer glass for the experience card: stronger blur/saturation, a soft
+     vertical sheen (lighter toward the top edge) and a subtle inset + drop
+     shadow so the pane reads as a slab of frosted material. */
+  .glass-exp {
+
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid color-mix(in srgb, rgb(var(--glass-border)) 80%, transparent);
+    box-shadow:
+      inset 0 1px 0 0 color-mix(in srgb, rgb(var(--glass-halo)) 10%, transparent),
+      inset 0 0 0 1px color-mix(in srgb, rgb(var(--glass-tint)) 6%, transparent),
+      0 30px 70px -32px color-mix(in srgb, rgb(var(--glass-halo)) 55%, transparent);
+  }
+
+  /* Slim, unobtrusive scrollbar for the experience card's detail list. */
+  .exp-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, rgb(var(--glass-border)) 90%, transparent) transparent;
+  }
+
+  .exp-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .exp-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .exp-scroll::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, rgb(var(--glass-border)) 90%, transparent);
+    border-radius: 999px;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  Per-page ambient hue.                                              */
+  /*  Each non-hero page stays transparent so the global star/dust field  */
+  /*  shows through (exactly like Hero). The page only sets `--pg-hue`,   */
+  /*  which the faint blurred glow blobs use to give each route a subtle,  */
+  /*  low-alpha colour wash without covering the background.              */
+  /* ------------------------------------------------------------------ */
+  .pg-about {
+    --pg-hue: 225 50% 60%;
+  }
+
+  .pg-exp {
+    --pg-hue: 265 50% 60%;
+  }
+
+  .pg-tech {
+    --pg-hue: 195 50% 55%;
+  }
+
+  .pg-works {
+    --pg-hue: 40 70% 55%;
+  }
+
+  .pg-contact {
+    --pg-hue: 165 55% 45%;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Scrollbar                                                          */
+/* ------------------------------------------------------------------ */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+::selection {
+  background: hsl(var(--foreground));
+  color: hsl(var(--background));
+}
+
+/* Keep 3D canvases from hijacking scroll */
+canvas {
+  display: block;
+  touch-action: pan-y;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Experience card directional slide-in.                               */
+/*  The active card is keyed + remounted on each index change, so this  */
+/*  entry animation makes "next / previous" read as a fresh screen.     */
+/* ------------------------------------------------------------------ */
+@keyframes exp-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exp-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-exp-in-right {
+  animation: exp-in-right 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-exp-in-left {
+  animation: exp-in-left 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-exp-in-right,
+  .animate-exp-in-left {
+    animation: none;
+  }
 }
