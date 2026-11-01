@@ -263,7 +263,6 @@ const techGroups = [
 const contact = {
   intro: `Have a role, an idea, or a tricky system-design problem? My inbox is always open — let's build something great.`,
   email: "pranayhpatle@gmail.com",
-  phone: "+91 81808 75642",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/pranayhpatle/" },
     { label: "Instagram", href: "https://www.instagram.com/campooter_ng_near/" },
@@ -279,6 +278,15 @@ const contact = {
     messagePlaceholder: "World's Best Boss",
     submit: "Send message",
     sending: "Sending…",
+  },
+  phoneRequest: {
+    label: "Request phone number",
+    hint: "Shared on request",
+    description:
+      "Oh, you’d like my number? It’s not public, since I’ve seen what happens to numbers that are. Tell me who you are and why you want to call, and I’ll consider emailing it",
+    reasonLabel: "Why do you need my number?",
+    reasonPlaceholder: "A quick call about a role, a project, a referral…",
+    submit: "Send request",
   },
 };
 

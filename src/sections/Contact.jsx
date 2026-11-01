@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { ExternalLink, Heart, Loader2, Mail, Phone } from "lucide-react";
+import { ExternalLink, Heart, Loader2, Mail, Phone, X } from "lucide-react";
 import { Reveal } from "@/components/deck/reveal";
 import { SectionHeading } from "@/components/layout/SectionHeading";
 import { Seo } from "@/components/seo/Seo";
@@ -12,7 +12,9 @@ const inputCls =
 
 const Contact = () => {
   const form = useRef(null);
+  const numberDialog = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [numberLoading, setNumberLoading] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = (e) => {
@@ -85,6 +87,55 @@ const Contact = () => {
     }
   };
 
+  const handleNumberRequest = async (e) => {
+    e.preventDefault();
+    const formEl = e.currentTarget;
+    const data = new FormData(formEl);
+
+    if (data.get("_gotcha")) return;
+
+    const name = (data.get("name") || "").trim();
+    const email = (data.get("email") || "").trim();
+    const reason = (data.get("reason") || "").trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name || !reason) {
+      toast({ title: "A little more detail, please.", description: "Name and reason are required." });
+      return;
+    }
+    if (!email || !emailOk) {
+      toast({
+        title: "That email doesn't look right.",
+        description: "Please double-check your email address.",
+      });
+      return;
+    }
+
+    setNumberLoading(true);
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: name,
+          from_email: email,
+          message: `Phone number request\nWhy: ${reason}`,
+        },
+        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+      );
+      formEl.reset();
+      numberDialog.current?.close();
+      toast({
+        title: "Request sent.",
+        description: "If it's a good fit, I'll email my number to you.",
+      });
+    } catch {
+      toast({ title: "Something went wrong", description: "Please try again later." });
+    } finally {
+      setNumberLoading(false);
+    }
+  };
+
   return (
     <section id="contact" className="pg-contact relative overflow-hidden py-24 font-body sm:py-28">
       <Seo id="contact" />
@@ -115,15 +166,19 @@ const Contact = () => {
                 </span>
                 <span className="text-base text-foreground">{contact.email}</span>
               </a>
-              <a
-                href={`tel:${contact.phone.replace(/[\s-]/g, "")}`}
-                className="glass flex items-center gap-3 p-4 transition-colors hover:border-primary/50"
+              <button
+                type="button"
+                onClick={() => numberDialog.current?.showModal()}
+                className="glass flex w-full items-center gap-3 p-4 text-left transition-colors hover:border-primary/50"
               >
-                <span className="grid h-10 w-10 place-items-center bg-primary/15 text-primary">
+                <span className="grid h-10 w-10 shrink-0 place-items-center bg-primary/15 text-primary">
                   <Phone className="h-4 w-4" />
                 </span>
-                <span className="text-base text-foreground">{contact.phone}</span>
-              </a>
+                <span className="flex flex-col">
+                  <span className="text-base text-foreground">{contact.phoneRequest.label}</span>
+                  <span className="text-xs text-muted-foreground">{contact.phoneRequest.hint}</span>
+                </span>
+              </button>
             </div>
 
             <div className="flex flex-wrap gap-3">
@@ -224,6 +279,92 @@ const Contact = () => {
           </Reveal>
         </div>
       </div>
+
+      {/* Phone number gate — the number itself never ships to the browser. */}
+      <dialog
+        ref={numberDialog}
+        aria-labelledby="number-dialog-title"
+        className="m-auto max-h-[90vh] w-[calc(100%-2rem)] max-w-lg overflow-y-auto border border-border bg-background p-6 text-foreground [&::backdrop]:bg-black/70 [&::backdrop]:backdrop-blur-sm sm:p-8"
+      >
+        <div className="flex items-start justify-between gap-4">
+          <h2
+            id="number-dialog-title"
+            className="font-hud text-lg uppercase tracking-widest text-foreground"
+          >
+            {contact.phoneRequest.label}
+          </h2>
+          <button
+            type="button"
+            onClick={() => numberDialog.current?.close()}
+            aria-label="Close"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          {contact.phoneRequest.description}
+        </p>
+
+        <form onSubmit={handleNumberRequest} noValidate className="mt-6 space-y-5">
+          <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+            <label>
+              Leave this field empty
+              <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
+            </label>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            <label className="flex flex-col gap-2">
+              <span className="font-hud text-xs uppercase tracking-widest text-foreground">
+                {contact.form.nameLabel}
+              </span>
+              <input name="name" type="text" placeholder={contact.form.namePlaceholder} className={inputCls} />
+            </label>
+            <label className="flex flex-col gap-2">
+              <span className="font-hud text-xs uppercase tracking-widest text-foreground">
+                {contact.form.emailLabel}
+              </span>
+              <input
+                name="email"
+                type="email"
+                placeholder={contact.form.emailPlaceholder}
+                className={inputCls}
+              />
+            </label>
+          </div>
+          <label className="flex flex-col gap-2">
+            <span className="font-hud text-xs uppercase tracking-widest text-foreground">
+              {contact.phoneRequest.reasonLabel}
+            </span>
+            <textarea
+              name="reason"
+              rows={4}
+              placeholder={contact.phoneRequest.reasonPlaceholder}
+              className={`${inputCls} resize-none`}
+            />
+          </label>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="submit"
+              disabled={numberLoading}
+              className="inline-flex items-center justify-center gap-2 border border-primary bg-primary px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-primary-foreground transition-colors hover:bg-transparent hover:text-primary disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {numberLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+              {numberLoading ? contact.form.sending : contact.phoneRequest.submit}
+            </button>
+            <button
+              type="button"
+              onClick={() => numberDialog.current?.close()}
+              className="border border-foreground/40 px-7 py-3.5 font-hud text-sm uppercase tracking-widest text-foreground transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </dialog>
     </section>
   );
 };
